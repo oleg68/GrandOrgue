@@ -110,7 +110,7 @@ void GOrgueLabel::Draw(wxDC& dc)
 		78,
 		22);
 
-	dc.DrawBitmap(*organfile->GetImage(8), rect.x, rect.y, false);
+	dc.DrawBitmap(DisplayMetrics->GetHW1Images().GetLabelBackgroundBitmap(), rect.x, rect.y, false);
 
 	wxFont font = DisplayMetrics->GetGroupLabelFont();
 	font.SetPointSize(DispLabelFontSize);

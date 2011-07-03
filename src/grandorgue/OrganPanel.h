@@ -34,15 +34,11 @@ class OrganPanel : public wxPanel
 {
 
 private:
-	wxBitmap m_clientBitmap;
-	wxPoint m_clientOrigin;
-	wxBrush m_pedalBrush;
 
-	GOrgueDisplayMetrics* m_display_metrics;
-
-//	void DrawClickables(wxDC* dc = NULL, int xx = 0, int yy = 0, bool right = false, int scroll = 0);
-//	void HelpDrawStop(GOrgueDrawstop* stop, wxDC* dc, int xx, int yy, bool right);
-//	void HelpDrawButton(GOrguePushbutton* button, wxDC* dc, int xx, int yy, bool right);
+	wxBitmap m_ClientBitmap;
+	wxPoint m_ClientOrigin;
+	wxBrush m_PedalBrush;
+	GOrgueDisplayMetrics* m_DisplayMetrics;
 
 public:
 	OrganPanel(wxWindow* parent);

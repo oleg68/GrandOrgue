@@ -41,7 +41,6 @@ GOrgueWindchest.cpp
 GrandOrgue.cpp
 GrandOrgueFile.cpp
 GrandOrgueFrame.cpp
-Images.cpp
 IniFileConfig.cpp
 MIDIListenDialog.cpp
 OrganDocument.cpp
@@ -51,7 +50,8 @@ SettingsDialog.cpp
 SplashScreen.cpp
 wxGaugeAudio.cpp
 gui/GO_HW1Background.cpp
-gui/GO_OrganScreen.cpp)
+gui/GO_OrganScreen.cpp
+gui/GO_HW1Images.cpp)
 
 if (WIN32)
 

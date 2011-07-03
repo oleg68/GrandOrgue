@@ -118,3 +118,13 @@ void GO_OrganScreen::MouseButtonDown(const unsigned x, const unsigned y, const i
 		}
 
 }
+
+void GO_OrganScreen::KeyEvent(const int wx_key, const unsigned flags)
+{
+
+	for (unsigned i = 0; i < m_Controls.size(); i++)
+		if (m_Controls[i]->IsDisplayed())
+			m_Controls[i]->OnKeyEvent(wx_key, flags);
+
+}
+

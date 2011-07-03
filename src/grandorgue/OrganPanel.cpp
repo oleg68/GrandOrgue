@@ -73,96 +73,42 @@ OrganPanel::OrganPanel(wxWindow* parent) :
 void OrganPanel::TileWood(wxDC& dc, int which, int sx, int sy, int cx, int cy)
 {
 	int x, y;
-	wxMemoryInputStream mem((const char*)ImageLoader_Wood[(which - 1) >> 1], c_ImageLoader_Wood[(which - 1) >> 1]);
-	wxImage img(mem, wxBITMAP_TYPE_JPEG);
+
+	wxImage wood_image = organfile->GetDisplayMetrics()->GetHW1Images().GetWoodBitmap((which - 1) >> 1).ConvertToImage();
 	if ((which - 1) & 1)
-		img = img.Rotate90();
-	wxBitmap bmp(img);
+		wood_image.Rotate90();
+	wxBitmap wood(wood_image);
+
 	dc.SetClippingRegion(sx, sy, cx, cy);
 	for (y = sy & 0xFFFFFF00; y < sy + cy; y += 256)
 		for (x = sx & 0xFFFFFF00; x < sx + cx; x += 256)
-			dc.DrawBitmap(bmp, x, y, false);
+			dc.DrawBitmap(wood, x, y, false);
 	dc.DestroyClippingRegion();
 }
 
 void OrganPanel::OnUpdate(wxView *WXUNUSED(sender), wxObject *hint)
 {
 
-	int j;
-	wxFont font = *wxNORMAL_FONT;
-
-	m_clientOrigin = GetClientAreaOrigin();
+	m_ClientOrigin = GetClientAreaOrigin();
 
 	if (!organfile)
 		return;
 
-	m_display_metrics = organfile->GetDisplayMetrics();
-	m_clientBitmap = wxBitmap(m_display_metrics->GetScreenWidth(), m_display_metrics->GetScreenHeight());
+	m_DisplayMetrics = organfile->GetDisplayMetrics();
+	m_ClientBitmap = wxBitmap(m_DisplayMetrics->GetScreenWidth(), m_DisplayMetrics->GetScreenHeight());
 	wxMemoryDC dc;
-	dc.SelectObject(m_clientBitmap);
-
+	dc.SelectObject(m_ClientBitmap);
 	organfile->GetOrganScreen().Draw(dc, NULL);
 
-	for (j = 0; j < organfile->GetDivisionalCouplerCount(); j++)
-	{
-		if (organfile->GetDivisionalCoupler(j)->Displayed)
-		{
-			font.SetPointSize(organfile->GetDivisionalCoupler(j)->DispLabelFontSize);
-			dc.SetFont(font);
-			WrapText(dc, organfile->GetDivisionalCoupler(j)->Name, 51);
-		}
-	}
+	GetParent()->SetClientSize
+		(m_DisplayMetrics->GetScreenWidth()
+		,m_DisplayMetrics->GetScreenHeight()
+		);
 
-/*	for (j = 0; j < organfile->GetTremulantCount(); j++)
-	{
-		if (organfile->GetTremulant(j)->Displayed)
-		{
-			font.SetPointSize(organfile->GetTremulant(j)->DispLabelFontSize);
-			dc.SetFont(font);
-			WrapText(dc, organfile->GetTremulant(j)->Name, 51);
-		}
-	}
-
-	for (j = 0; j < organfile->GetGeneralCount(); j++)
-	{
-		if (organfile->GetGeneral(j)->Displayed)
-		{
-			font.SetPointSize(organfile->GetGeneral(j)->DispLabelFontSize);
-			dc.SetFont(font);
-			WrapText(dc, organfile->GetGeneral(j)->Name, 28);
-		}
-	}
-
-	for (j = 0; j < organfile->GetNumberOfReversiblePistons(); j++)
-	{
-		if (organfile->GetPiston(j)->Displayed)
-		{
-			font.SetPointSize(organfile->GetPiston(j)->DispLabelFontSize);
-			dc.SetFont(font);
-			WrapText(dc, organfile->GetPiston(j)->Name, 28);
-		}
-	}*/
-
-	j = (m_display_metrics->GetScreenWidth() - m_display_metrics->GetEnclosureWidth() + 6) >> 1;
-	dc.SetPen(*wxTRANSPARENT_PEN);
-	dc.SetBrush(*wxBLACK_BRUSH);
-	for (unsigned l = 0; l < organfile->GetEnclosureCount(); l++)
-		organfile->GetEnclosure(l)->DrawLabel(dc);
-
-//	DrawClickables(&dc);
-
-	for (j = 0; j < organfile->GetLabelCount(); j++)
-		organfile->GetLabel(j)->Draw(dc);
-
-	dc.SelectObject(wxNullBitmap);
-
-	GetParent()->SetClientSize(
-		m_display_metrics->GetScreenWidth(),
-		m_display_metrics->GetScreenHeight());
-
-	SetSize(
-		m_display_metrics->GetScreenWidth(),
-		m_display_metrics->GetScreenHeight());
+	SetSize
+		(m_DisplayMetrics->GetScreenWidth()
+		,m_DisplayMetrics->GetScreenHeight()
+		);
 
 	GetParent()->Center(wxBOTH);
 	GetParent()->SetBackgroundStyle(wxBG_STYLE_CUSTOM);
@@ -172,7 +118,7 @@ void OrganPanel::OnUpdate(wxView *WXUNUSED(sender), wxObject *hint)
 
 void OrganPanel::OnErase(wxEraseEvent& event)
 {
-	if (!m_clientBitmap.Ok() || !organfile || !m_display_metrics->GetJambLeftRightWidth())
+	if (!m_ClientBitmap.Ok() || !organfile || !m_DisplayMetrics->GetJambLeftRightWidth())
 	{
 		event.Skip();
 		return;
@@ -182,7 +128,7 @@ void OrganPanel::OnErase(wxEraseEvent& event)
 }
 void OrganPanel::OnPaint(wxPaintEvent& event)
 {
-	if (!m_clientBitmap.Ok() || !organfile || !m_display_metrics->GetJambLeftRightWidth())
+	if (!m_ClientBitmap.Ok() || !organfile || !m_DisplayMetrics->GetJambLeftRightWidth())
 	{
 		event.Skip();
 		return;
@@ -198,11 +144,11 @@ void OrganPanel::OnDrawstop(wxCommandEvent& event)
 		return;
 
 	wxMemoryDC mdc;
-	mdc.SelectObject(m_clientBitmap);
+	mdc.SelectObject(m_ClientBitmap);
 	wxClientDC dc(this);
-	dc.SetDeviceOrigin(m_clientOrigin.x, m_clientOrigin.y);
+	dc.SetDeviceOrigin(m_ClientOrigin.x, m_ClientOrigin.y);
 
-	if (!m_clientBitmap.Ok() || !m_display_metrics->GetJambLeftRightWidth())
+	if (!m_ClientBitmap.Ok() || !m_DisplayMetrics->GetJambLeftRightWidth())
 		return;
 
 	GO_IControl* control = static_cast<GO_IControl*>(event.GetClientData());
@@ -214,13 +160,13 @@ void OrganPanel::OnDrawstop(wxCommandEvent& event)
 void OrganPanel::OnNoteOnOff(wxCommandEvent& event)
 {
 
-	if (!m_clientBitmap.Ok() || !organfile || !m_display_metrics->GetJambLeftRightWidth())
+	if (!m_ClientBitmap.Ok() || !organfile || !m_DisplayMetrics->GetJambLeftRightWidth())
 		return;
 
 	wxMemoryDC mdc;
-	mdc.SelectObject(m_clientBitmap);
+	mdc.SelectObject(m_ClientBitmap);
 	wxClientDC dc(this);
-	dc.SetDeviceOrigin(m_clientOrigin.x, m_clientOrigin.y);
+	dc.SetDeviceOrigin(m_ClientOrigin.x, m_ClientOrigin.y);
 
 	GOrgueManual* man = organfile->GetManual(event.GetInt());
 	if (man->IsDisplayed())
@@ -240,9 +186,7 @@ void OrganPanel::OnMouseLeftDown(wxMouseEvent& event)
 		return;
 	}
 
-	wxClientDC dc(this);
 	organfile->GetOrganScreen().MouseButtonDown(event.GetX(), event.GetY(), MOUSE_CLICK_LEFT);
-//	DrawClickables(NULL, event.GetX(), event.GetY());
 	event.Skip();
 
 }
@@ -256,9 +200,7 @@ void OrganPanel::OnMouseRightDown(wxMouseEvent& event)
 		return;
 	}
 
-	wxClientDC dc(this);
 	organfile->GetOrganScreen().MouseButtonDown(event.GetX(), event.GetY(), MOUSE_CLICK_RIGHT);
-//	DrawClickables(NULL, event.GetX(), event.GetY(), true);
 	event.Skip();
 
 }
@@ -276,79 +218,6 @@ void OrganPanel::OnMouseScroll(wxMouseEvent& event)
 	event.Skip();
 
 }
-
-
-//void OrganPanel::HelpDrawStop(GOrgueDrawstop* stop, wxDC* dc, int xx, int yy, bool right)
-//{
-//	if (stop->Draw(xx, yy, dc))
-//	{
-//		if (right)
-//			stop->MIDI();
-//		else
-//		{
-//			stop->Push();
-//			wxMemoryDC mdc;
-//			mdc.SelectObject(m_clientBitmap);
-//			wxClientDC dc(this);
-//			dc.SetDeviceOrigin(m_clientOrigin.x, m_clientOrigin.y);
-//
-//			stop->Draw(0, 0, &mdc, &dc);
-//		}
-//    }
-//}
-//
-//void OrganPanel::HelpDrawButton(GOrguePushbutton* button, wxDC* dc, int xx, int yy, bool right)
-//{
-//	if (button->Draw(xx, yy, dc))
-//	{
-//		if (right)
-//			button->MIDI();
-//		else
-//		{
-//			button->Push();
-//			wxMemoryDC mdc;
-//			mdc.SelectObject(m_clientBitmap);
-//			wxClientDC dc(this);
-//			dc.SetDeviceOrigin(m_clientOrigin.x, m_clientOrigin.y);
-//
-//			button->Draw(0, 0, &mdc, &dc);
-//		}
-//	}
-//}
-
-//void OrganPanel::DrawClickables(wxDC* dc, int xx, int yy, bool right, int scroll)
-//{
-//
-//	int j;
-//
-//	if (!m_clientBitmap.Ok())
-//		return;
-//
-//	if (!scroll)
-//	{
-//
-//		for (j = 0; j < organfile->GetTremulantCount(); j++)
-//			HelpDrawStop(organfile->GetTremulant(j), dc, xx, yy, right);
-//		for (j = 0; j < organfile->GetDivisionalCouplerCount(); j++)
-//			HelpDrawStop(organfile->GetDivisionalCoupler(j), dc, xx, yy, right);
-//
-//		for (j = 0; j < organfile->GetGeneralCount(); j++)
-//			HelpDrawButton(organfile->GetGeneral(j), dc, xx, yy, right);
-//		for (j = 0; j < organfile->GetNumberOfReversiblePistons(); j++)
-//			HelpDrawButton(organfile->GetPiston(j), dc, xx, yy, right);
-//	}
-//
-//	for (unsigned l = 0; l < organfile->GetEnclosureCount(); l++)
-//	{
-//		if (organfile->GetEnclosure(l)->Draw(xx, yy, dc))
-//		{
-//			if (right)
-//				organfile->GetEnclosure(l)->MIDI();
-//			else if (scroll)
-//				organfile->GetEnclosure(l)->Scroll(scroll > 0);
-//		}
-//	}
-//}
 
 void OrganPanel::WrapText(wxDC& dc, wxString& string, int width)
 {
@@ -416,6 +285,7 @@ void OrganPanel::WrapText(wxDC& dc, wxString& string, int width)
 
 void OrganPanel::OnKeyCommand(wxKeyEvent& event)
 {
+
 	if (g_sound && g_sound->GetMidi().SetterActive() ^ event.ShiftDown())
 	{
 		::wxGetApp().frame->ProcessCommand(ID_AUDIO_MEMSET);
@@ -430,59 +300,27 @@ void OrganPanel::OnKeyCommand(wxKeyEvent& event)
 		OrganDocument* doc = (OrganDocument*)::wxGetApp().m_docManager->GetCurrentDocument();
 		switch(k)
 		{
-			case WXK_ESCAPE:
+
+		case WXK_ESCAPE:
+			::wxGetApp().frame->ProcessCommand(ID_AUDIO_PANIC);
+			break;
+		case WXK_LEFT:
+			meter->SetValue(meter->GetValue() - 1);
+			break;
+		case WXK_DOWN:
+			if (organfile)
+				organfile->GetFrameGeneral(meter->GetValue() - 1)->Push();
+			break;
+		case WXK_RIGHT:
+			meter->SetValue(meter->GetValue() + 1);
+			break;
+		default:
+			if (organfile)
 			{
-				::wxGetApp().frame->ProcessCommand(ID_AUDIO_PANIC);
-				break;
-			}
-			case WXK_LEFT:
-			{
-				meter->SetValue(meter->GetValue() - 1);
-				break;
-			}
-			case WXK_DOWN:
-			{
-				if (organfile)
-					organfile->GetFrameGeneral(meter->GetValue() - 1)->Push();
-				break;
-			}
-			case WXK_RIGHT:
-			{
-				meter->SetValue(meter->GetValue() + 1);
-				break;
-			}
-			default:
-			{
-				if (organfile && doc && doc->b_loaded && (k = WXKtoVK(k)))
-				{
-					for (int i = organfile->GetFirstManualIndex(); i <= organfile->GetManualAndPedalCount(); i++)
-					{
-						for (int j = 0; j < organfile->GetManual(i)->GetStopCount(); j++)
-						{
-							if (k == organfile->GetManual(i)->GetStop(j)->ShortcutKey)
-								organfile->GetManual(i)->GetStop(j)->Push();
-						}
-						for (int j = 0; j < organfile->GetManual(i)->GetCouplerCount(); j++)
-							if (k == organfile->GetManual(i)->GetCoupler(j)->ShortcutKey)
-								organfile->GetManual(i)->GetCoupler(j)->Push();
-						for (int j = 0; j < organfile->GetManual(i)->GetDivisionalCount(); j++)
-							if (k == organfile->GetManual(i)->GetDivisional(j)->ShortcutKey)
-								organfile->GetManual(i)->GetDivisional(j)->Push();
-					}
-					for (int j = 0; j < organfile->GetTremulantCount(); j++)
-						if (k == organfile->GetTremulant(j)->ShortcutKey)
-							organfile->GetTremulant(j)->Push();
-					for (int j = 0; j < organfile->GetDivisionalCouplerCount(); j++)
-						if (k == organfile->GetDivisionalCoupler(j)->ShortcutKey)
-							organfile->GetDivisionalCoupler(j)->Push();
-					for (int j = 0; j < organfile->GetGeneralCount(); j++)
-						if (k == organfile->GetGeneral(j)->ShortcutKey)
-							organfile->GetGeneral(j)->Push();
-					for (int j = 0; j < organfile->GetNumberOfReversiblePistons(); j++)
-						if (k == organfile->GetPiston(j)->ShortcutKey)
-							organfile->GetPiston(j)->Push();
-				}
-				event.Skip();
+				int flags = 0;
+				if (event.AltDown())
+					flags |= KEY_EVENT_ALT;
+				organfile->GetOrganScreen().KeyEvent(event.GetKeyCode(), flags);
 			}
 		}
 	}
@@ -491,7 +329,7 @@ void OrganPanel::OnKeyCommand(wxKeyEvent& event)
 
 void OrganPanel::OnDraw(wxDC* dc)
 {
-	if (!m_clientBitmap.Ok() || !organfile || !m_display_metrics->GetJambLeftRightWidth())
+	if (!m_ClientBitmap.Ok() || !organfile || !m_DisplayMetrics->GetJambLeftRightWidth())
 		return;
-	dc->DrawBitmap(m_clientBitmap, m_clientOrigin.x, m_clientOrigin.y, false);
+	dc->DrawBitmap(m_ClientBitmap, m_ClientOrigin.x, m_ClientOrigin.y, false);
 }

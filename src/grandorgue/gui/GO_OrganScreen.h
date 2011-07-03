@@ -34,6 +34,7 @@ public:
 	void Draw(wxDC& dc, GO_IRenderable* renderable);
 	void Scroll(const unsigned x, const unsigned y, const int scroll);
 	void MouseButtonDown(const unsigned x, const unsigned y, const int button);
+	void KeyEvent(const int wx_key, const unsigned flags);
 
 };
 

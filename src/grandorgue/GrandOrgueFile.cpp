@@ -51,7 +51,6 @@
 #include "OrganDocument.h"
 #include "zlib.h"
 #include "GO_HW1Background.h"
-#include "GO_OrganScreen.h"
 
 extern GOrgueSound* g_sound;
 GrandOrgueFile* organfile = 0;
@@ -109,10 +108,6 @@ GrandOrgueFile::GrandOrgueFile() :
 	m_pipe(NULL),
 	m_Screen()
 {
-	for (int i = 0; i < 9; ++i)
-	{
-		m_images[i] = wxBitmap();
-	}
 	for (int i = 0; i < 7; ++i)
 	{
 		m_manual[i] = GOrgueManual();
@@ -451,17 +446,6 @@ wxString GrandOrgueFile::Load(const wxString& file, const wxString& file2)
 
 	}
 
-	/* TODO: ? check for correctness ? */
-	/* Load the images for the stops */
-	for (int i = 0; i < 9; i++)
-	{
-
-		wxMemoryInputStream mem((const char*)ImageLoader_Stops[i], c_ImageLoader_Stops[i]);
-		wxImage img(mem, wxBITMAP_TYPE_PNG);
-		m_images[i] = wxBitmap(img);
-
-	}
-
 	m_pipe_files.clear();
 	m_pipe_ptrs.clear();
 	m_pipe_amplitudes.clear();
@@ -671,11 +655,6 @@ bool GrandOrgueFile::CombinationsStoreNonDisplayedDrawstops()
 GOrgueDisplayMetrics* GrandOrgueFile::GetDisplayMetrics()
 {
 	return m_DisplayMetrics;
-}
-
-wxBitmap* GrandOrgueFile::GetImage(unsigned index)
-{
-	return &m_images[index];
 }
 
 int GrandOrgueFile::GetNumberOfReversiblePistons()

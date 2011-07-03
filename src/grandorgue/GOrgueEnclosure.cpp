@@ -41,50 +41,7 @@ GOrgueEnclosure::GOrgueEnclosure() :
 {
 
 }
-/*
-bool GOrgueEnclosure::Draw(int xx, int yy, wxDC* dc, wxDC* dc2)
-{
 
-	int enclosure_x = DisplayMetrics->GetEnclosureX(this);
-	int enclosure_y = DisplayMetrics->GetEnclosureY();
-
-	if (!dc)
-	{
-		wxRect rect(enclosure_x, enclosure_y, 46, 61);
-		return rect.Contains(xx, yy);
-	}
-
-	dc->SetBrush(*wxBLACK_BRUSH);
-	dc->DrawRectangle(enclosure_x, enclosure_y + 13, 46, 44);
-	int dx = 1 + ( 3 * MIDIValue) / 127;
-	int dy = 1 + (13 * MIDIValue) / 127;
-	wxPoint points[4];
-	points[0].x = enclosure_x +  7 + dx;
-	points[1].x = enclosure_x + 38 - dx;
-	points[2].x = enclosure_x + 38 + dx;
-	points[3].x = enclosure_x +  7 - dx;
-	points[0].y = points[1].y = enclosure_y + 13 + dy;
-	points[2].y = points[3].y = enclosure_y + 56 - dy;
-	dc->SetBrush(::wxGetApp().frame->m_pedalBrush);
-	dc->DrawPolygon(4, points);
-
-	if (dc2)
-	{
-		dc2->Blit
-			(enclosure_x
-			,enclosure_y + 13
-			,46
-			,44
-			,dc
-			,enclosure_x
-			,enclosure_y + 13
-			);
-	}
-
-	return false;
-
-}
-*/
 void GOrgueEnclosure::Load(IniFileConfig& cfg, const unsigned enclosure_nb, GOrgueDisplayMetrics* displayMetrics)
 {
 	wxString buffer;
@@ -107,7 +64,6 @@ void GOrgueEnclosure::Set(int n)
 	wxCommandEvent event(wxEVT_ENCLOSURE, 0);
 	event.SetClientData(this);
 	::wxGetApp().frame->AddPendingEvent(event);
-	printf("scrolled\n");
 }
 
 void GOrgueEnclosure::MIDI(void)
@@ -151,21 +107,6 @@ float GOrgueEnclosure::GetAttenuation()
 void GOrgueEnclosure::DrawLabel(wxDC& dc)
 {
 
-	int enclosure_x = DisplayMetrics->GetEnclosureX(this);
-	int enclosure_y = DisplayMetrics->GetEnclosureY();
-
-	dc.SetPen(*wxTRANSPARENT_PEN);
-	dc.SetBrush(*wxBLACK_BRUSH);
-
-	wxRect rect(enclosure_x, enclosure_y, 46, 61);
-	dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
-
-	wxFont font = *wxNORMAL_FONT;
-	font.SetPointSize(7);
-	dc.SetFont(font);
-	dc.SetTextForeground(*wxWHITE);
-
-	dc.DrawLabel(Name, rect, wxALIGN_CENTER_HORIZONTAL);
 
 }
 
@@ -217,9 +158,20 @@ void GOrgueEnclosure::Draw(wxDC& dc)
 	int enclosure_x = DisplayMetrics->GetEnclosureX(this);
 	int enclosure_y = DisplayMetrics->GetEnclosureY();
 
-	/* Draw the box */
+
+	dc.SetPen(*wxTRANSPARENT_PEN);
 	dc.SetBrush(*wxBLACK_BRUSH);
-	dc.DrawRectangle(enclosure_x, enclosure_y + 13, 46, 44);
+
+	/* Draw the box */
+	wxRect rect(enclosure_x, enclosure_y, 46, 61);
+	dc.DrawRectangle(rect.x, rect.y, rect.width, rect.height);
+
+	/* Draw the label */
+	wxFont font = *wxNORMAL_FONT;
+	font.SetPointSize(7);
+	dc.SetFont(font);
+	dc.SetTextForeground(*wxWHITE);
+	dc.DrawLabel(Name, rect, wxALIGN_CENTER_HORIZONTAL);
 
 	/* Draw the pedal */
 	int dx = 1 + ( 3 * MIDIValue) / 127;
@@ -233,19 +185,6 @@ void GOrgueEnclosure::Draw(wxDC& dc)
 	points[2].y = points[3].y = enclosure_y + 56 - dy;
 	dc.SetBrush(::wxGetApp().frame->m_pedalBrush);
 	dc.DrawPolygon(4, points);
-
-/*	if (dc2)
-	{
-		dc2->Blit
-			(enclosure_x
-			,enclosure_y + 13
-			,46
-			,44
-			,dc
-			,enclosure_x
-			,enclosure_y + 13
-			);
-	}*/
 
 }
 

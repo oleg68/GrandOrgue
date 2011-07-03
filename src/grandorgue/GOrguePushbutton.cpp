@@ -29,6 +29,8 @@
 #include "MIDIListenDialog.h"
 #include "GOrgueDisplayMetrics.h"
 #include "GOrgueMidi.h"
+#include "OrganPanel.h"
+#include "KeyConvert.h"
 
 extern GrandOrgueFile* organfile;
 extern GOrgueSound* g_sound;
@@ -64,35 +66,6 @@ void GOrguePushbutton::MIDI(void)
 		MIDIProgramChangeNumber = (dlg.GetEvent() & 0x7F) + 1;
 		::wxGetApp().m_docManager->GetCurrentDocument()->Modify(true);
 	}
-
-}
-
-bool GOrguePushbutton::Draw(int xx, int yy, wxDC* dc, wxDC* dc2)
-{
-	int x, y;
-	if (!Displayed)
-		return false;
-
-	m_DisplayMetrics.GetPushbuttonBlitPosition(DispButtonRow, DispButtonCol, &x, &y);
-
-	if (!DispKeyLabelOnLeft)
-		x -= 13;
-
-	if (!dc)
-		return !(xx < x || xx > x + 30 || yy < y || yy > y + 30 || (x + 15 - xx) * (x + 15 - xx) + (y + 15 - yy) * (y + 15 - yy) > 225);
-
-	wxMemoryDC mdc;
-	wxRect rect(x + 1, y + 1, 31 - 1, 30 - 1);
-	wxBitmap* bmp = organfile->GetImage(DispImageNum + 4);
-	dc->DrawBitmap(*bmp, x, y, true);
-	dc->SetTextForeground(DispLabelColour);
-	wxFont font = m_DisplayMetrics.GetControlLabelFont();
-	font.SetPointSize(DispLabelFontSize);
-	dc->SetFont(font);
-	dc->DrawLabel(Name, rect, wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL);
-	if (dc2)
-		dc2->Blit(x, y, 31, 30, dc, x, y);
-	return false;
 
 }
 
@@ -157,8 +130,8 @@ void GOrguePushbutton::Draw(wxDC& dc)
 	m_DisplayMetrics.GetPushbuttonBlitPosition(DispButtonRow, DispButtonCol, &x, &y);
 
 	// Draw the button
-	wxBitmap* button_bitmap = organfile->GetImage(DispImageNum + 4);
-	dc.DrawBitmap(*button_bitmap, x, y, true);
+	wxBitmap& button_bitmap = m_DisplayMetrics.GetHW1Images().GetStopBitmap(DispImageNum + 4);
+	dc.DrawBitmap(button_bitmap, x, y, true);
 
 	// Draw the text
 	wxFont font = m_DisplayMetrics.GetControlLabelFont();
@@ -166,6 +139,9 @@ void GOrguePushbutton::Draw(wxDC& dc)
 	dc.SetFont(font);
 	dc.SetTextForeground(DispLabelColour);
 	wxRect rect(x + 1, y + 1, 30, 29);
+
+	OrganPanel::WrapText(dc, Name, 28);
+
 	dc.DrawLabel(Name, rect, wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL);
 
 }
@@ -180,12 +156,17 @@ void GOrguePushbutton::MouseButtonDown(const unsigned x, const unsigned y, const
 	else
 	{
 		Push();
-/*		wxMemoryDC mdc;
-		mdc.SelectObject(m_clientBitmap);
-		wxClientDC dc(this);
-		dc.SetDeviceOrigin(m_clientOrigin.x, m_clientOrigin.y);
-
-		button->Draw(0, 0, &mdc, &dc);*/
 	}
+
+}
+
+void GOrguePushbutton::OnKeyEvent(const int wx_key, const unsigned flags)
+{
+
+	if ((flags & KEY_EVENT_UP) || (flags & KEY_EVENT_ALT))
+		return;
+
+	if (WXKtoVK(wx_key) == ShortcutKey)
+		Push();
 
 }

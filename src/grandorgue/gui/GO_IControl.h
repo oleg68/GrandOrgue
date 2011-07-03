@@ -10,6 +10,9 @@
 
 #include "GO_IRenderable.h"
 
+#define KEY_EVENT_UP 1
+#define KEY_EVENT_ALT 2
+
 class GO_IControl : public GO_IRenderable
 {
 
@@ -32,6 +35,12 @@ public:
 	 * Method to be called when control scrolled.
 	 */
 	virtual void Scroll(const unsigned x, const unsigned y, const int amount) { };
+
+	/**
+	 * Method called on keyboard input
+	 */
+	virtual void OnKeyEvent(const int wx_key, const unsigned flags) { };
+
 
 };
 

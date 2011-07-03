@@ -61,6 +61,7 @@ public:
 
 	// Members of GO_IControl
 	virtual void MouseButtonDown(const unsigned x, const unsigned y, const GO_MouseButton button);
+	virtual void OnKeyEvent(const int wx_key, const unsigned flags);
 
 };
 

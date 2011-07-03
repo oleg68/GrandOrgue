@@ -25,6 +25,7 @@
 
 #include <wx/wx.h>
 #include <vector>
+#include <GO_HW1Images.h>
 
 class IniFileConfig;
 class GOrgueEnclosure;
@@ -96,6 +97,8 @@ private:
 	int m_CenterY;
 	int m_CenterWidth;
 
+	GO_HW1Images m_Images;
+
 	void Update();
 
 public:
@@ -150,6 +153,8 @@ public:
 	bool HasExtraPedalButtonRow();
 
 	const MANUAL_RENDER_INFO& GetManualRenderInfo(const unsigned manual_nb) const;
+
+	GO_HW1Images& GetHW1Images();
 
 };
 

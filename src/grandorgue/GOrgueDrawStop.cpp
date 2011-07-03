@@ -32,6 +32,7 @@
 #include "MIDIListenDialog.h"
 #include "GOrgueMidi.h"
 #include "OrganPanel.h"
+#include "KeyConvert.h"
 
 extern GrandOrgueFile* organfile;
 extern GOrgueSound* g_sound;
@@ -70,32 +71,6 @@ void GOrgueDrawstop::Save(IniFileConfig& cfg, bool prefix, wxString group)
 	cfg.SaveHelper(prefix, group, wxT("DefaultToEngaged"), DefaultToEngaged ? wxT("Y") : wxT("N"));
 	cfg.SaveHelper(prefix, group, wxT("StopControlMIDIKeyNumber"), StopControlMIDIKeyNumber);
 }
-
-//bool GOrgueDrawstop::Draw(int xx, int yy, wxDC* dc, wxDC* dc2)
-//{
-//	int x, y;
-//	if (!Displayed)
-//		return false;
-//
-//	DisplayMetrics->GetDrawstopBlitPosition(DispDrawstopRow, DispDrawstopCol, &x, &y);
-//
-//	if (!dc)
-//		return !(xx < x || xx > x + 64 || yy < y || yy > y + 64 || (x + 32 - xx) * (x + 32 - xx) + (y + 32 - yy) * (y + 32 - yy) > 1024);
-//
-//	wxRect rect(x, y + 1, 65, 65 - 1);
-//	wxBitmap* bmp = organfile->GetImage(((DispImageNum - 1) << 1) + (DisplayInInvertedState ^ DefaultToEngaged ? 1 : 0));
-//	dc->DrawBitmap(*bmp, x, y, true);
-//	dc->SetTextForeground(DispLabelColour);
-//	wxFont font = DisplayMetrics->GetControlLabelFont();
-//	font.SetPointSize(DispLabelFontSize);
-//	dc->SetFont(font);
-//	dc->DrawLabel(Name, rect, wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL);
-//
-//	if (dc2)
-//		dc2->Blit(x, y, 65, 65, dc, x, y);
-//	return false;
-//
-//}
 
 unsigned GOrgueDrawstop::GetLayer()
 {
@@ -143,9 +118,9 @@ void GOrgueDrawstop::Draw(wxDC& dc)
 	DisplayMetrics->GetDrawstopBlitPosition(DispDrawstopRow, DispDrawstopCol, &x, &y);
 
 	// Draw the knob
-	wxBitmap* knob_bitmap = organfile->GetImage
+	wxBitmap& knob_bitmap = DisplayMetrics->GetHW1Images().GetStopBitmap
 		(((DispImageNum - 1) << 1) + (DisplayInInvertedState ^ DefaultToEngaged ? 1 : 0));
-	dc.DrawBitmap(*knob_bitmap, x, y, true);
+	dc.DrawBitmap(knob_bitmap, x, y, true);
 
 	// Draw the label
 	wxFont font = DisplayMetrics->GetControlLabelFont();
@@ -161,7 +136,9 @@ void GOrgueDrawstop::Draw(wxDC& dc)
 
 void GOrgueDrawstop::Push()
 {
+
 	Set(DefaultToEngaged ^ true);
+
 };
 
 void GOrgueDrawstop::MIDI(void)
@@ -227,5 +204,16 @@ void GOrgueDrawstop::MouseButtonDown(const unsigned x, const unsigned y, const G
 	{
 		Push();
 	}
+
+}
+
+void GOrgueDrawstop::OnKeyEvent(const int wx_key, const unsigned flags)
+{
+
+	if ((flags & KEY_EVENT_UP) || (flags & KEY_EVENT_ALT))
+		return;
+
+	if (WXKtoVK(wx_key) == ShortcutKey)
+		Push();
 
 }

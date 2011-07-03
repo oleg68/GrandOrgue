@@ -29,6 +29,7 @@
 #include <wx/filename.h>
 #include "GOrgueManual.h"
 #include "GO_OrganScreen.h"
+#include "GO_HW1Images.h"
 
 class GOrgueDisplayMetrics;
 class GOrgueDivisionalCoupler;
@@ -42,6 +43,7 @@ class GOrguePushbutton;
 class GOrgueTremulant;
 class GOrgueWindchest;
 class GO_HW1Background;
+class GO_HW1Images;
 
 class GrandOrgueFile 
 {
@@ -58,7 +60,7 @@ public:
 	std::vector<wxInt16> m_pipe_percussive;
 	std::vector<int> m_pipe_amplitudes;
 
-public:
+private:
 
 	wxFileName m_path;
 	int m_b_squash;
@@ -114,7 +116,6 @@ private:
 	GOrguePipe** m_pipe;
 
 	GOrgueManual m_manual[7];
-	wxBitmap m_images[9];
 
 	GO_OrganScreen m_Screen;
 	GO_HW1Background* m_Background;
@@ -163,8 +164,6 @@ public:
 	bool DivisionalsStoreTremulants();
 	bool CombinationsStoreNonDisplayedDrawstops();
 	bool GeneralsStoreDivisionalCouplers();
-
-	wxBitmap* GetImage(unsigned index);
 
 	long GetElapsedTime();
 	void SetElapsedTime(long elapsed);

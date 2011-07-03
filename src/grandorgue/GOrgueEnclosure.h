@@ -42,6 +42,8 @@ private:
 	wxString Name;
 	GOrgueDisplayMetrics* DisplayMetrics;
 
+	void DrawLabel(wxDC& dc);
+
 public:
 
 	GOrgueEnclosure();
@@ -52,7 +54,6 @@ public:
 	int GetMIDIInputNumber();
 	float GetAttenuation();
 
-	void DrawLabel(wxDC& dc);
 
 	bool IsEnclosure(const unsigned nb) const;
 
