@@ -50,6 +50,8 @@
 #include "GOrgueWindchest.h"
 #include "OrganDocument.h"
 #include "zlib.h"
+#include "GO_HW1Background.h"
+#include "GO_OrganScreen.h"
 
 extern GOrgueSound* g_sound;
 GrandOrgueFile* organfile = 0;
@@ -82,10 +84,7 @@ GrandOrgueFile::GrandOrgueFile() :
 	m_NumberOfEnclosures(0),
 	m_NumberOfTremulants(0),
 	m_NumberOfWindchestGroups(0),
-	m_NumberOfReversiblePistons(0),
 	m_NumberOfLabels(0),
-	m_NumberOfGenerals(0),
-	m_NumberOfFrameGenerals(0),
 	m_NumberOfDivisionalCouplers(0),
 	m_NumberOfStops(0),
 	m_NumberOfPipes(0),
@@ -102,12 +101,13 @@ GrandOrgueFile::GrandOrgueFile() :
 	m_enclosure(NULL),
 	m_tremulant(NULL),
 	m_windchest(NULL),
-	m_piston(NULL),
+	m_Pistons(),
 	m_label(NULL),
-	m_general(NULL),
-	m_framegeneral(NULL),
+	m_Generals(),
+	m_FrameGenerals(),
 	m_divisionalcoupler(NULL),
-	m_pipe(NULL)
+	m_pipe(NULL),
+	m_Screen()
 {
 	for (int i = 0; i < 9; ++i)
 	{
@@ -122,11 +122,17 @@ GrandOrgueFile::GrandOrgueFile() :
 
 void GrandOrgueFile::readOrganFile()
 {
+
 	IniFileConfig ini(m_cfg);
 	wxString group = wxT("Organ");
 
 	/* load all GUI display metrics */
 	m_DisplayMetrics = new GOrgueDisplayMetrics(ini);
+
+	m_Screen.Clear();
+
+	m_Background = new GO_HW1Background(*m_DisplayMetrics);
+	m_Screen.AddRenderable(m_Background);
 
 	/* load church info */
 	m_HauptwerkOrganFileFormatVersion = ini.ReadString(group, wxT("HauptwerkOrganFileFormatVersion"),  256, false);
@@ -153,10 +159,10 @@ void GrandOrgueFile::readOrganFile()
 	m_NumberOfEnclosures = ini.ReadInteger(group, wxT("NumberOfEnclosures"), 0, 6);
 	m_NumberOfTremulants = ini.ReadInteger(group, wxT("NumberOfTremulants"), 0, 10);
 	m_NumberOfWindchestGroups = ini.ReadInteger(group, wxT("NumberOfWindchestGroups"), 1, 12);
-	m_NumberOfReversiblePistons = ini.ReadInteger(group, wxT("NumberOfReversiblePistons"), 0, 32);
+	const unsigned m_NumberOfReversiblePistons = ini.ReadInteger(group, wxT("NumberOfReversiblePistons"), 0, 32);
 	m_NumberOfLabels = ini.ReadInteger(group, wxT("NumberOfLabels"), 0, 16);
-	m_NumberOfGenerals = ini.ReadInteger(group, wxT("NumberOfGenerals"), 0, 99);
-	m_NumberOfFrameGenerals = 512;	// we never want this to change, what's the point?
+	const unsigned m_NumberOfGenerals = ini.ReadInteger(group, wxT("NumberOfGenerals"), 0, 99);
+	const unsigned m_NumberOfFrameGenerals = 512;	// we never want this to change, what's the point?
 	m_NumberOfDivisionalCouplers = ini.ReadInteger(group, wxT("NumberOfDivisionalCouplers"), 0, 8);
 	m_AmplitudeLevel = ini.ReadInteger(group, wxT("AmplitudeLevel"), 0, 1000);
 	m_DivisionalsStoreIntermanualCouplers = ini.ReadBoolean(group, wxT("DivisionalsStoreIntermanualCouplers"));
@@ -170,12 +176,15 @@ void GrandOrgueFile::readOrganFile()
 	for (int i = m_FirstManual; i <= m_NumberOfManuals; i++)
 	{
 		buffer.Printf(wxT("Manual%03d"), i);
-		m_manual[i].Load(ini, buffer, m_DisplayMetrics, i);
+		m_manual[i].Load(ini, buffer, m_DisplayMetrics, i, m_Screen);
 	}
 
 	m_enclosure = new GOrgueEnclosure[m_NumberOfEnclosures];
 	for (int i = 0; i < m_NumberOfEnclosures; i++)
+	{
 		m_enclosure[i].Load(ini, i, m_DisplayMetrics);
+		m_Screen.AddControl(&m_enclosure[i]);
+	}
 
 	m_windchest = new GOrgueWindchest[m_NumberOfTremulants + 1 + m_NumberOfWindchestGroups];
 	for (int i = 0; i < m_NumberOfWindchestGroups; i++)
@@ -189,13 +198,15 @@ void GrandOrgueFile::readOrganFile()
 	{
 		buffer.Printf(wxT("Tremulant%03d"), i + 1);
 		m_tremulant[i].Load(ini, buffer, m_DisplayMetrics);
+		m_Screen.AddControl(&m_tremulant[i]);
 	}
 
-	m_piston = new GOrguePiston[m_NumberOfReversiblePistons];
-	for (int i = 0; i < m_NumberOfReversiblePistons; i++)
+	for (unsigned i = 0; i < m_NumberOfReversiblePistons; i++)
 	{
 		buffer.Printf(wxT("ReversiblePiston%03d"), i + 1);
-		m_piston[i].Load(ini, buffer, m_DisplayMetrics);
+		m_Pistons.push_back(new GOrguePiston(*m_DisplayMetrics));
+		m_Pistons.back()->Load(ini, buffer);
+		m_Screen.AddControl(m_Pistons.back());
 	}
 
 	m_label = new GOrgueLabel[m_NumberOfLabels];
@@ -205,19 +216,21 @@ void GrandOrgueFile::readOrganFile()
 		m_label[i].Load(ini, buffer, m_DisplayMetrics);
 	}
 
-	m_general = new GOrgueGeneral[m_NumberOfGenerals];
-	for (int i = 0; i < m_NumberOfGenerals; i++)
+	for (unsigned i = 0; i < m_NumberOfGenerals; i++)
 	{
 		buffer.Printf(wxT("General%03d"), i + 1);
-		m_general[i].Load(ini, buffer, m_DisplayMetrics);
+		m_Generals.push_back(new GOrgueGeneral(*m_DisplayMetrics));
+		m_Generals.back()->Load(ini, buffer);
+		m_Screen.AddControl(m_Generals.back());
 	}
 
-	m_framegeneral = new GOrgueFrameGeneral[m_NumberOfFrameGenerals];
-	for (int i = 0; i < m_NumberOfFrameGenerals; i++)
+	for (unsigned i = 0; i < m_NumberOfFrameGenerals; i++)
 	{
 		buffer.Printf(wxT("General%03d"), i + 100);
-		m_framegeneral[i].Load(ini, buffer);
-		m_framegeneral[i].ObjectNumber = i + 100;
+		m_FrameGenerals.push_back(new GOrgueFrameGeneral(*m_DisplayMetrics));
+		m_FrameGenerals.back()->Load(ini, buffer);
+		m_FrameGenerals.back()->ObjectNumber = i + 100;
+		m_Screen.AddControl(m_FrameGenerals.back());
 	}
 
 	m_divisionalcoupler = new GOrgueDivisionalCoupler[m_NumberOfDivisionalCouplers];
@@ -225,6 +238,7 @@ void GrandOrgueFile::readOrganFile()
 	{
 		buffer.Printf(wxT("DivisionalCoupler%03d"), i + 1);
 		m_divisionalcoupler[i].Load(ini, buffer, m_FirstManual, m_NumberOfManuals, m_DisplayMetrics);
+		m_Screen.AddControl(&m_divisionalcoupler[i]);
 	}
 
 }
@@ -494,14 +508,27 @@ GrandOrgueFile::~GrandOrgueFile(void)
 	}
 	if (m_divisionalcoupler)
 		delete[] m_divisionalcoupler;
-	if (m_framegeneral)
-		delete[] m_framegeneral;
-	if (m_general)
-		delete[] m_general;
+
+	while (m_FrameGenerals.size())
+	{
+		delete m_FrameGenerals.back();
+		m_FrameGenerals.pop_back();
+	}
+	while (m_Generals.size())
+	{
+		delete m_Generals.back();
+		m_Generals.pop_back();
+	}
+
 	if (m_label)
 		delete[] m_label;
-	if (m_piston)
-		delete[] m_piston;
+
+	while (m_Pistons.size())
+	{
+		delete m_Pistons.back();
+		m_Pistons.pop_back();
+	}
+
 	if (m_windchest)
 		delete[] m_windchest;
 	if (m_tremulant)
@@ -558,7 +585,7 @@ void GrandOrgueFile::Save(const wxString& file)
     aIni.SaveHelper(prefix, wxT("Organ"), wxT("ChurchName"), m_ChurchName);
     aIni.SaveHelper(prefix, wxT("Organ"), wxT("ChurchAddress"), m_ChurchAddress);
     aIni.SaveHelper(prefix, wxT("Organ"), wxT("HauptwerkOrganFileFormatVersion"), m_HauptwerkOrganFileFormatVersion);
-    aIni.SaveHelper(prefix, wxT("Organ"), wxT("NumberOfFrameGenerals"), m_NumberOfFrameGenerals);
+    aIni.SaveHelper(prefix, wxT("Organ"), wxT("NumberOfFrameGenerals"), m_FrameGenerals.size());
     aIni.SaveHelper(prefix, wxT("Organ"), wxT("Volume"), g_sound->GetVolume());
 
     int i, j;
@@ -576,12 +603,13 @@ void GrandOrgueFile::Save(const wxString& file)
 		m_tremulant[j].Save(aIni, prefix);
 	for (j = 0; j < m_NumberOfDivisionalCouplers; j++)
 		m_divisionalcoupler[j].Save(aIni, prefix);
-	for (j = 0; j < m_NumberOfGenerals; j++)
-		m_general[j].Save(aIni, prefix);
-	for (j = 0; j < m_NumberOfFrameGenerals; j++)
-		m_framegeneral[j].Save(aIni, prefix);
-	for (j = 0; j < m_NumberOfReversiblePistons; j++)
-		m_piston[j].Save(aIni, prefix);
+
+	for (unsigned k = 0; k < m_Generals.size(); k++)
+		m_Generals[k]->Save(aIni, prefix);
+	for (unsigned k = 0; k < m_FrameGenerals.size(); k++)
+		m_FrameGenerals[k]->Save(aIni, prefix);
+	for (unsigned k = 0; k < m_Pistons.size(); k++)
+		m_Pistons[k]->Save(aIni, prefix);
 
 }
 
@@ -652,12 +680,12 @@ wxBitmap* GrandOrgueFile::GetImage(unsigned index)
 
 int GrandOrgueFile::GetNumberOfReversiblePistons()
 {
-	return m_NumberOfReversiblePistons;
+	return m_Pistons.size();
 }
 
 GOrguePiston* GrandOrgueFile::GetPiston(unsigned index)
 {
-	return &m_piston[index];
+	return m_Pistons[index];
 }
 
 bool GrandOrgueFile::GeneralsStoreDivisionalCouplers()
@@ -667,12 +695,12 @@ bool GrandOrgueFile::GeneralsStoreDivisionalCouplers()
 
 int GrandOrgueFile::GetGeneralCount()
 {
-	return m_NumberOfGenerals;
+	return m_Generals.size();
 }
 
 GOrgueGeneral* GrandOrgueFile::GetGeneral(unsigned index)
 {
-	return &m_general[index];
+	return m_Generals[index];
 }
 
 GOrguePipe* GrandOrgueFile::GetPipe(unsigned index)
@@ -682,7 +710,7 @@ GOrguePipe* GrandOrgueFile::GetPipe(unsigned index)
 
 GOrgueFrameGeneral* GrandOrgueFile::GetFrameGeneral(unsigned index)
 {
-	return &m_framegeneral[index];
+	return m_FrameGenerals[index];
 }
 
 long GrandOrgueFile::GetElapsedTime()
@@ -781,3 +809,9 @@ void GrandOrgueFile::MIDIPretend(bool on)
 		m_manual[i].MIDIPretend(on);
 }
 
+GO_OrganScreen& GrandOrgueFile::GetOrganScreen()
+{
+
+	return m_Screen;
+
+}

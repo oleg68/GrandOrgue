@@ -23,10 +23,16 @@
 #include "GOrgueGeneral.h"
 #include "IniFileConfig.h"
 
-void GOrgueGeneral::Load(IniFileConfig& cfg, wxString group, GOrgueDisplayMetrics* displayMetrics)
+GOrgueGeneral::GOrgueGeneral(GOrgueDisplayMetrics& display_metrics) :
+	GOrgueFrameGeneral(display_metrics)
+{
+
+}
+
+void GOrgueGeneral::Load(IniFileConfig& cfg, wxString group)
 {
 	GOrgueFrameGeneral::Load(cfg, group);
-	GOrguePushbutton::Load(cfg, group, displayMetrics);
+	GOrguePushbutton::Load(cfg, group);
 }
 
 void GOrgueGeneral::Save(IniFileConfig& cfg, bool prefix)

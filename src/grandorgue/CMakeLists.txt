@@ -6,7 +6,10 @@ set(wxWidgets_USE_LIBS base core net adv html)
 include(CMakeWxWidgetsInclude.txt)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/GrandOrgueDef.h.in ${CMAKE_CURRENT_BINARY_DIR}/GrandOrgueDef.h/GrandOrgueDef.h)
+
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/GrandOrgueDef.h)
+include_directories(gui)
+include_directories(.)
 
 set(grandorgue_src
 GOrgueWave.cpp
@@ -46,7 +49,9 @@ OrganPanel.cpp
 OrganView.cpp
 SettingsDialog.cpp
 SplashScreen.cpp
-wxGaugeAudio.cpp)
+wxGaugeAudio.cpp
+gui/GO_HW1Background.cpp
+gui/GO_OrganScreen.cpp)
 
 if (WIN32)
 

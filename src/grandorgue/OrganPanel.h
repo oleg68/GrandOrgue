@@ -40,9 +40,9 @@ private:
 
 	GOrgueDisplayMetrics* m_display_metrics;
 
-	void DrawClickables(wxDC* dc = NULL, int xx = 0, int yy = 0, bool right = false, int scroll = 0);
-	void HelpDrawStop(GOrgueDrawstop* stop, wxDC* dc, int xx, int yy, bool right);
-	void HelpDrawButton(GOrguePushbutton* button, wxDC* dc, int xx, int yy, bool right);
+//	void DrawClickables(wxDC* dc = NULL, int xx = 0, int yy = 0, bool right = false, int scroll = 0);
+//	void HelpDrawStop(GOrgueDrawstop* stop, wxDC* dc, int xx, int yy, bool right);
+//	void HelpDrawButton(GOrguePushbutton* button, wxDC* dc, int xx, int yy, bool right);
 
 public:
 	OrganPanel(wxWindow* parent);

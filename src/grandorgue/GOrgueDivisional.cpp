@@ -41,8 +41,8 @@ extern GOrgueSound* g_sound;
 #define GET_BIT(x,y,z) (x[y >> 3][z] & (0x80 >> (y & 7)) ? true : false)
 #define SET_BIT(x,y,z,b) (b ? x[y >> 3][z] |= (0x80 >> (y & 7)) : x[y >> 3][z] &= (0xFFFFFF7F >> (y & 7)))
 
-GOrgueDivisional::GOrgueDivisional() :
-	GOrguePushbutton(),
+GOrgueDivisional::GOrgueDivisional(GOrgueDisplayMetrics& display_metrics) :
+	GOrguePushbutton(display_metrics),
 	m_DivisionalNumber(0),
 	NumberOfStops(0),
 	NumberOfCouplers(0),
@@ -68,7 +68,7 @@ GOrgueDivisional::GOrgueDivisional() :
 
 }
 
-void GOrgueDivisional::Load(IniFileConfig& cfg, wxString group, int manualNumber, int divisionalNumber, GOrgueDisplayMetrics* displayMetrics)
+void GOrgueDivisional::Load(IniFileConfig& cfg, wxString group, int manualNumber, int divisionalNumber)
 {
 
 	int i, j, k;
@@ -125,7 +125,7 @@ void GOrgueDivisional::Load(IniFileConfig& cfg, wxString group, int manualNumber
 		}
 	}
 
-	GOrguePushbutton::Load(cfg, group, displayMetrics);
+	GOrguePushbutton::Load(cfg, group);
 
 }
 

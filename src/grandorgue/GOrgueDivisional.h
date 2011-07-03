@@ -44,8 +44,8 @@ public:
 	wxByte coupler[2][2];
 	wxByte tremulant[2][2];
 
-	GOrgueDivisional();
-	void Load(IniFileConfig& cfg, wxString group, int manualNumber, int divisionalNumber, GOrgueDisplayMetrics* displayMetrics);
+	GOrgueDivisional(GOrgueDisplayMetrics& display_metrics);
+	void Load(IniFileConfig& cfg, wxString group, int manualNumber, int divisionalNumber);
 	void Save(IniFileConfig& cfg, bool prefix, wxString group = wxT("Divisional"));
 	void Push(int depth = 0);
 

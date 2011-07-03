@@ -36,8 +36,9 @@ public:
 
 	GOrgueDrawstop* drawstop;
 
-	GOrguePiston();
-	void Load(IniFileConfig& cfg, wxString group, GOrgueDisplayMetrics* displayMetrics);
+	GOrguePiston(GOrgueDisplayMetrics& display_metrics);
+
+	void Load(IniFileConfig& cfg, wxString group);
 	void Save(IniFileConfig& cfg, bool prefix);
 	void Push(int depth = 0);
 

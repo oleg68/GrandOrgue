@@ -28,6 +28,7 @@
 #include <wx/fileconf.h>
 #include <wx/filename.h>
 #include "GOrgueManual.h"
+#include "GO_OrganScreen.h"
 
 class GOrgueDisplayMetrics;
 class GOrgueDivisionalCoupler;
@@ -40,6 +41,7 @@ class GOrguePiston;
 class GOrguePushbutton;
 class GOrgueTremulant;
 class GOrgueWindchest;
+class GO_HW1Background;
 
 class GrandOrgueFile 
 {
@@ -78,10 +80,7 @@ public:
 	wxInt16 m_NumberOfEnclosures;
 	wxInt16 m_NumberOfTremulants;
 	wxInt16 m_NumberOfWindchestGroups;
-	wxInt16 m_NumberOfReversiblePistons;
 	wxInt16 m_NumberOfLabels;
-	wxInt16 m_NumberOfGenerals;
-	wxInt16 m_NumberOfFrameGenerals;
 	wxInt16 m_NumberOfDivisionalCouplers;
 	wxInt16 m_NumberOfStops;
 
@@ -107,15 +106,18 @@ private:
 	GOrgueEnclosure* m_enclosure;
 	GOrgueTremulant* m_tremulant;
 	GOrgueWindchest* m_windchest;
-	GOrguePiston* m_piston;
+	std::vector<GOrguePiston*> m_Pistons;
 	GOrgueLabel* m_label;
-	GOrgueGeneral* m_general;
-	GOrgueFrameGeneral* m_framegeneral;
+	std::vector<GOrgueGeneral*> m_Generals;
+	std::vector<GOrgueFrameGeneral*> m_FrameGenerals;
 	GOrgueDivisionalCoupler* m_divisionalcoupler;
 	GOrguePipe** m_pipe;
 
 	GOrgueManual m_manual[7];
 	wxBitmap m_images[9];
+
+	GO_OrganScreen m_Screen;
+	GO_HW1Background* m_Background;
 
 	void readOrganFile();
 	/*	int readOneFile(int file, char* buffer, unsigned length);
@@ -187,6 +189,9 @@ public:
 	const wxString& GetInfoFilename();
 
 	void MIDIPretend(bool on);
+
+	GO_OrganScreen& GetOrganScreen();
+
 
 };
 

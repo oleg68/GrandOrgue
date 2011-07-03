@@ -32,7 +32,10 @@ class GOrgueGeneral : public GOrgueFrameGeneral
 {
 
 public:
-	void Load(IniFileConfig& cfg, wxString group, GOrgueDisplayMetrics* displayMetrics);
+
+	GOrgueGeneral(GOrgueDisplayMetrics& display_metrics);
+
+	void Load(IniFileConfig& cfg, wxString group);
 	void Save(IniFileConfig& cfg, bool prefix);
 
 };

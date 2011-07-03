@@ -31,6 +31,7 @@
 #include "GrandOrgueFrame.h"
 #include "MIDIListenDialog.h"
 #include "GOrgueMidi.h"
+#include "OrganPanel.h"
 
 extern GrandOrgueFile* organfile;
 extern GOrgueSound* g_sound;
@@ -70,29 +71,91 @@ void GOrgueDrawstop::Save(IniFileConfig& cfg, bool prefix, wxString group)
 	cfg.SaveHelper(prefix, group, wxT("StopControlMIDIKeyNumber"), StopControlMIDIKeyNumber);
 }
 
-bool GOrgueDrawstop::Draw(int xx, int yy, wxDC* dc, wxDC* dc2)
-{
-	int x, y;
-	if (!Displayed)
-		return false;
+//bool GOrgueDrawstop::Draw(int xx, int yy, wxDC* dc, wxDC* dc2)
+//{
+//	int x, y;
+//	if (!Displayed)
+//		return false;
+//
+//	DisplayMetrics->GetDrawstopBlitPosition(DispDrawstopRow, DispDrawstopCol, &x, &y);
+//
+//	if (!dc)
+//		return !(xx < x || xx > x + 64 || yy < y || yy > y + 64 || (x + 32 - xx) * (x + 32 - xx) + (y + 32 - yy) * (y + 32 - yy) > 1024);
+//
+//	wxRect rect(x, y + 1, 65, 65 - 1);
+//	wxBitmap* bmp = organfile->GetImage(((DispImageNum - 1) << 1) + (DisplayInInvertedState ^ DefaultToEngaged ? 1 : 0));
+//	dc->DrawBitmap(*bmp, x, y, true);
+//	dc->SetTextForeground(DispLabelColour);
+//	wxFont font = DisplayMetrics->GetControlLabelFont();
+//	font.SetPointSize(DispLabelFontSize);
+//	dc->SetFont(font);
+//	dc->DrawLabel(Name, rect, wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL);
+//
+//	if (dc2)
+//		dc2->Blit(x, y, 65, 65, dc, x, y);
+//	return false;
+//
+//}
 
+unsigned GOrgueDrawstop::GetLayer()
+{
+
+	return 1;
+
+}
+
+unsigned GOrgueDrawstop::GetX()
+{
+
+	int x, y;
+	DisplayMetrics->GetDrawstopBlitPosition(DispDrawstopRow, DispDrawstopCol, &x, &y);
+	return x;
+
+}
+
+unsigned GOrgueDrawstop::GetY()
+{
+
+	int x, y;
+	DisplayMetrics->GetDrawstopBlitPosition(DispDrawstopRow, DispDrawstopCol, &x, &y);
+	return y;
+
+}
+
+unsigned GOrgueDrawstop::GetWidth()
+{
+
+	return 65;
+
+}
+
+unsigned GOrgueDrawstop::GetHeight()
+{
+
+	return 65;
+
+}
+
+void GOrgueDrawstop::Draw(wxDC& dc)
+{
+
+	int x, y;
 	DisplayMetrics->GetDrawstopBlitPosition(DispDrawstopRow, DispDrawstopCol, &x, &y);
 
-	if (!dc)
-		return !(xx < x || xx > x + 64 || yy < y || yy > y + 64 || (x + 32 - xx) * (x + 32 - xx) + (y + 32 - yy) * (y + 32 - yy) > 1024);
+	// Draw the knob
+	wxBitmap* knob_bitmap = organfile->GetImage
+		(((DispImageNum - 1) << 1) + (DisplayInInvertedState ^ DefaultToEngaged ? 1 : 0));
+	dc.DrawBitmap(*knob_bitmap, x, y, true);
 
-	wxRect rect(x, y + 1, 65, 65 - 1);
-	wxBitmap* bmp = organfile->GetImage(((DispImageNum - 1) << 1) + (DisplayInInvertedState ^ DefaultToEngaged ? 1 : 0));
-	dc->DrawBitmap(*bmp, x, y, true);
-	dc->SetTextForeground(DispLabelColour);
+	// Draw the label
 	wxFont font = DisplayMetrics->GetControlLabelFont();
 	font.SetPointSize(DispLabelFontSize);
-	dc->SetFont(font);
-	dc->DrawLabel(Name, rect, wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL);
+	dc.SetFont(font);
+	dc.SetTextForeground(DispLabelColour);
+	wxRect rect(x, y + 1, 65, 64);
 
-	if (dc2)
-		dc2->Blit(x, y, 65, 65, dc, x, y);
-	return false;
+	OrganPanel::WrapText(dc, Name, 51);
+	dc.DrawLabel(Name, rect, wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL);
 
 }
 
@@ -144,4 +207,25 @@ bool GOrgueDrawstop::Set(bool on)
 	GOrgueLCD_WriteLineTwo(Name, 2000);
 #endif
 	return !on;
+}
+
+void GOrgueDrawstop::MouseButtonDown(const unsigned x, const unsigned y, const GO_MouseButton button)
+{
+
+	int avg_radius = (int)(GetWidth() + GetHeight()) / 4;
+	int dx = (int)x - (GetWidth() / 2);
+	int dy = (int)y - (GetHeight() / 2);
+
+	if (dx * dx + dy * dy > avg_radius * avg_radius)
+		return;
+
+	if (button == GO_IControl::GO_MB_RIGHT)
+	{
+		MIDI();
+	}
+	else
+	{
+		Push();
+	}
+
 }

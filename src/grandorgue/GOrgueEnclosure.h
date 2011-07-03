@@ -25,11 +25,12 @@
 
 #include "GOrgueDrawable.h"
 #include <wx/wx.h>
+#include "GO_IControl.h"
 
 class GOrgueDisplayMetrics;
 class IniFileConfig;
 
-class GOrgueEnclosure : public GOrgueDrawable
+class GOrgueEnclosure : public GO_IControl
 {
 
 private:
@@ -44,18 +45,30 @@ private:
 public:
 
 	GOrgueEnclosure();
-	bool Draw(int xx, int yy, wxDC* dc = 0, wxDC* dc2 = 0);
+
 	void Load(IniFileConfig& cfg, const unsigned enclosure_nb, GOrgueDisplayMetrics* displayMetrics);
 	void Set(int n);
 	void MIDI(void);
 	int GetMIDIInputNumber();
 	float GetAttenuation();
 
-	void Scroll(bool scroll_up);
-
 	void DrawLabel(wxDC& dc);
 
 	bool IsEnclosure(const unsigned nb) const;
+
+	// Methods from GO_IRenderable
+	virtual unsigned GetLayer();
+	virtual unsigned GetX();
+	virtual unsigned GetY();
+	virtual unsigned GetWidth();
+	virtual unsigned GetHeight();
+	virtual void Draw(wxDC& dc);
+	virtual bool IsDisplayed();
+
+	// Methods from GO_IControl
+	virtual void MouseButtonDown(const unsigned x, const unsigned y, const GO_MouseButton button);
+	virtual void Scroll(const unsigned x, const unsigned y, const int amount);
+
 
 };
 

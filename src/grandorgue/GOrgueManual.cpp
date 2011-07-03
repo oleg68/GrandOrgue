@@ -35,6 +35,7 @@
 #include "GOrgueMidi.h"
 #include "OrganPanel.h"
 #include "GOrgueDisplayMetrics.h"
+#include "GO_OrganScreen.h"
 
 extern GrandOrgueFile* organfile;
 extern GOrgueSound* g_sound;
@@ -49,13 +50,12 @@ GOrgueManual::GOrgueManual() :
 	m_midi_input_number(0),
 	m_nb_stops(0),
 	m_nb_couplers(0),
-	m_nb_divisionals(0),
 	m_nb_tremulants(0),
 	m_tremulant_ids(),
 	m_name(),
 	m_stops(),
+	m_Divisionals(),
 	m_couplers(NULL),
-	m_divisionals(NULL),
 	m_displayed(false),
 	m_key_colour_inverted(false),
 	m_key_colour_wooden(false)
@@ -63,7 +63,7 @@ GOrgueManual::GOrgueManual() :
 
 }
 
-void GOrgueManual::Load(IniFileConfig& cfg, wxString group, GOrgueDisplayMetrics* displayMetrics, int manualNumber)
+void GOrgueManual::Load(IniFileConfig& cfg, wxString group, GOrgueDisplayMetrics* displayMetrics, int manualNumber, GO_OrganScreen& screen)
 {
 
 	m_name                              = cfg.ReadString (group, wxT("Name"), 32);
@@ -77,7 +77,7 @@ void GOrgueManual::Load(IniFileConfig& cfg, wxString group, GOrgueDisplayMetrics
 	m_key_colour_wooden                 = cfg.ReadBoolean(group, wxT("DispKeyColourWooden"), false);
 	m_nb_stops                          = cfg.ReadInteger(group, wxT("NumberOfStops"), 0, 64);
 	m_nb_couplers                       = cfg.ReadInteger(group, wxT("NumberOfCouplers"), 0, 16, false);
-	m_nb_divisionals                    = cfg.ReadInteger(group, wxT("NumberOfDivisionals"), 0, 32, false);
+	const unsigned m_nb_divisionals                    = cfg.ReadInteger(group, wxT("NumberOfDivisionals"), 0, 32, false);
 	m_nb_tremulants                     = cfg.ReadInteger(group, wxT("NumberOfTremulants"), 0, 10, false);
 	m_manual_number = manualNumber;
 	m_display_metrics = displayMetrics;
@@ -91,6 +91,7 @@ void GOrgueManual::Load(IniFileConfig& cfg, wxString group, GOrgueDisplayMetrics
 		buffer.Printf(wxT("Stop%03d"), cfg.ReadInteger(group, buffer, 1, 448));
 		m_stops[i]->m_ManualNumber = m_manual_number;
 		m_stops[i]->Load(cfg, buffer, displayMetrics);
+		screen.AddControl(m_stops[i]);
 	}
 
 	m_couplers = new GOrgueCoupler[m_nb_couplers];
@@ -99,14 +100,17 @@ void GOrgueManual::Load(IniFileConfig& cfg, wxString group, GOrgueDisplayMetrics
 		buffer.Printf(wxT("Coupler%03d"), i + 1);
 		buffer.Printf(wxT("Coupler%03d"), cfg.ReadInteger(group, buffer, 1, 64));
 		m_couplers[i].Load(cfg, buffer, organfile->GetFirstManualIndex(), organfile->GetManualAndPedalCount(), displayMetrics);
+		screen.AddControl(&m_couplers[i]);
 	}
 
-	m_divisionals = new GOrgueDivisional[m_nb_divisionals];
+/*	m_divisionals = new GOrgueDivisional[m_nb_divisionals];*/
 	for (unsigned i = 0; i < m_nb_divisionals; i++)
 	{
 		buffer.Printf(wxT("Divisional%03d"), i + 1);
 		buffer.Printf(wxT("Divisional%03d"), cfg.ReadInteger(group, buffer, 1, 224));
-		m_divisionals[i].Load(cfg, buffer, m_manual_number, i, displayMetrics);
+		m_Divisionals.push_back(new GOrgueDivisional(*displayMetrics));
+		m_Divisionals[i]->Load(cfg, buffer, m_manual_number, i);
+		screen.AddControl(m_Divisionals[i]);
 	}
 
 	for (unsigned i = 0; i < m_nb_tremulants; i++)
@@ -131,6 +135,9 @@ void GOrgueManual::Load(IniFileConfig& cfg, wxString group, GOrgueDisplayMetrics
 			}
 		}
 	}
+
+	screen.AddControl(this);
+
 }
 
 void GOrgueManual::Set(int note, bool on, bool pretend, int depth, GOrgueCoupler* prev)
@@ -269,8 +276,6 @@ GOrgueManual::~GOrgueManual(void)
 	std::for_each(m_stops.begin(), m_stops.end(), delete_functor<GOrgueStop>());
 	if (m_couplers)
 		delete[] m_couplers;
-	if (m_divisionals)
-		delete[] m_divisionals;
 }
 
 int GOrgueManual::GetMIDIInputNumber()
@@ -318,13 +323,13 @@ GOrgueCoupler* GOrgueManual::GetCoupler(unsigned index)
 
 int GOrgueManual::GetDivisionalCount()
 {
-	return m_nb_divisionals;
+	return m_Divisionals.size();
 }
 
 GOrgueDivisional* GOrgueManual::GetDivisional(unsigned index)
 {
-	assert(index < m_nb_divisionals);
-	return &m_divisionals[index];
+	assert(index < m_Divisionals.size());
+	return m_Divisionals[index];
 }
 
 int GOrgueManual::GetTremulantCount()
@@ -560,6 +565,45 @@ void GOrgueManual::DrawKey
 
 }
 
+unsigned GOrgueManual::GetLayer()
+{
+
+	return 1;
+
+}
+
+unsigned GOrgueManual::GetX()
+{
+
+	const GOrgueDisplayMetrics::MANUAL_RENDER_INFO &mri = m_display_metrics->GetManualRenderInfo(m_manual_number);
+	return mri.x;
+
+}
+
+unsigned GOrgueManual::GetY()
+{
+
+	const GOrgueDisplayMetrics::MANUAL_RENDER_INFO &mri = m_display_metrics->GetManualRenderInfo(m_manual_number);
+	return mri.y;
+
+}
+
+unsigned GOrgueManual::GetWidth()
+{
+
+	const GOrgueDisplayMetrics::MANUAL_RENDER_INFO &mri = m_display_metrics->GetManualRenderInfo(m_manual_number);
+	return mri.width;
+
+}
+
+unsigned GOrgueManual::GetHeight()
+{
+
+	const GOrgueDisplayMetrics::MANUAL_RENDER_INFO &mri = m_display_metrics->GetManualRenderInfo(m_manual_number);
+	return mri.height;
+
+}
+
 void GOrgueManual::Draw(wxDC& dc)
 {
 
@@ -587,37 +631,6 @@ void GOrgueManual::Draw(wxDC& dc)
 
 	if (m_manual_number < organfile->GetFirstManualIndex())
 		return;
-
-	wxFont font = m_display_metrics->GetControlLabelFont();
-	for (unsigned j = 0; j < m_nb_stops; j++)
-	{
-		if (m_stops[j]->Displayed)
-		{
-			font.SetPointSize(m_stops[j]->DispLabelFontSize);
-			dc.SetFont(font);
-			OrganPanel::WrapText(dc, m_stops[j]->Name, 51);
-		}
-	}
-
-	for (unsigned j = 0; j < m_nb_couplers; j++)
-	{
-		if (m_couplers[j].Displayed)
-		{
-			font.SetPointSize(m_couplers[j].DispLabelFontSize);
-			dc.SetFont(font);
-			OrganPanel::WrapText(dc, m_couplers[j].Name, 51);
-		}
-	}
-
-	for (unsigned j = 0; j < m_nb_divisionals; j++)
-	{
-		if (m_divisionals[j].Displayed)
-		{
-			font.SetPointSize(m_divisionals[j].DispLabelFontSize);
-			dc.SetFont(font);
-			OrganPanel::WrapText(dc, m_divisionals[j].Name, 28);
-		}
-	}
 
 	wxRegion region;
 	for (unsigned j = 0; j < m_nb_accessible_keys; j++)
@@ -682,5 +695,13 @@ bool GOrgueManual::IsDisplayed()
 {
 
 	return m_displayed;
+
+}
+
+void GOrgueManual::MouseButtonDown(const unsigned x, const unsigned y, const GO_MouseButton button)
+{
+
+	if (button == GO_IControl::GO_MB_RIGHT)
+		MIDI();
 
 }
