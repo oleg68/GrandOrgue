@@ -62,8 +62,7 @@ GOrgueDisplayMetrics::GOrgueDisplayMetrics(IniFileConfig& ini) :
 	m_HackY(0),
 	m_EnclosureY(0),
 	m_CenterY(0),
-	m_CenterWidth(0),
-	m_Images()
+	m_CenterWidth(0)
 {
 
 	m_nb_enclosures = ini.ReadInteger(wxT("Organ"), wxT("NumberOfEnclosures"), 0, 6);
@@ -537,12 +536,5 @@ const GOrgueDisplayMetrics::MANUAL_RENDER_INFO& GOrgueDisplayMetrics::GetManualR
 	assert(manual_nb < m_manual_info.size());
 	assert(manual_nb >= m_first_manual);
 	return m_manual_info[manual_nb].render_info;
-
-}
-
-GO_HW1Images& GOrgueDisplayMetrics::GetHW1Images()
-{
-
-	return m_Images;
 
 }

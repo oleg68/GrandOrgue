@@ -31,7 +31,7 @@ class GOrgueFrameGeneral : public GOrguePushbutton
 {
 public:
 
-	GOrgueFrameGeneral(GOrgueDisplayMetrics& display_metrics);
+	GOrgueFrameGeneral();
 	void Load(IniFileConfig& cfg, wxString group);
 	void Save(IniFileConfig& cfg, bool prefix, wxString group = wxT("General"));
 	void Push(int depth = 0);

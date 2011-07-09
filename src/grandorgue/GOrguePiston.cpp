@@ -31,14 +31,14 @@
 /* TODO: This should not be... */
 extern GrandOrgueFile* organfile;
 
-GOrguePiston::GOrguePiston(GOrgueDisplayMetrics& display_metrics) :
-	GOrguePushbutton(display_metrics),
+GOrguePiston::GOrguePiston() :
+	GOrguePushbutton(),
 	drawstop(NULL)
 {
 
 }
 
-void GOrguePiston::Load(IniFileConfig& cfg, wxString group)
+void GOrguePiston::Load(IniFileConfig& cfg, wxString group, GOrgueDisplayMetrics* displayMetrics)
 {
 
 	int i, j;
@@ -63,8 +63,7 @@ void GOrguePiston::Load(IniFileConfig& cfg, wxString group)
 		drawstop = organfile->GetTremulant(j);
 	}
 
-	GOrguePushbutton::Load(cfg, group);
-
+	GOrguePushbutton::Load(cfg, group, displayMetrics);
 	if (drawstop->DefaultToEngaged ^ drawstop->DisplayInInvertedState)
 		DispImageNum ^= 2;
 

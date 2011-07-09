@@ -29,44 +29,23 @@
 
 class GOrgueDisplayMetrics;
 
-class GOrguePushbutton : public GOrgueControl
+class GOrguePushbutton : public GOrgueControl, GOrgueDrawable
 {
-
-private:
-
-	GOrgueDisplayMetrics& m_DisplayMetrics;
-	void MIDI(void);
-
 public:
-
-	GOrguePushbutton(GOrgueDisplayMetrics& display_metrics);
+	GOrguePushbutton();
+	void Load(IniFileConfig& cfg, wxString group, GOrgueDisplayMetrics* displayMetrics);
+    void Save(IniFileConfig& cfg, bool prefix, wxString group);
+	bool Draw(int xx, int yy, wxDC* dc = 0, wxDC* dc2 = 0);
+	virtual void Push(int depth = 0) { };
+	void MIDI(void);
 	virtual ~GOrguePushbutton() { };
 
-	void Load(IniFileConfig& cfg, wxString group);
-    void Save(IniFileConfig& cfg, bool prefix, wxString group);
-
-	// Members of GO_IRenderable
-	virtual unsigned GetLayer();
-	virtual unsigned GetX();
-	virtual unsigned GetY();
-	virtual unsigned GetWidth();
-	virtual unsigned GetHeight();
-	virtual void Draw(wxDC& dc);
-
-	// Members of GO_IControl
-	virtual void MouseButtonDown(const unsigned x, const unsigned y, const GO_MouseButton button);
-	virtual void OnKeyEvent(const int wx_key, const unsigned flags);
-
-	// Must be overriden by derived class - gets called when the button is
-	// pushed by the user.
-	virtual void Push(int depth = 0) = 0;
-
+	GOrgueDisplayMetrics* DisplayMetrics;
 	wxInt16 m_ManualNumber;
 	wxInt16 DispButtonRow;
 	wxInt16 DispButtonCol;
 	wxInt16 DispImageNum;
 	wxInt16 MIDIProgramChangeNumber;
-
 };
 
 #endif

@@ -32,7 +32,7 @@ public:
 	GOrgueStop();
 	void Load(IniFileConfig& cfg, wxString group, GOrgueDisplayMetrics* displayMetrics);
 	void Save(IniFileConfig& cfg, bool prefix);
-	virtual bool Set(bool on);
+	bool Set(bool on);
 	~GOrgueStop(void);
 
 	wxInt16 m_ManualNumber;
@@ -46,7 +46,6 @@ public:
 	wxInt16 NumberOfAccessiblePipes;
 	wxInt16 WindchestGroup;
 	short* pipe;
-
 };
 
 #endif /* GORGUESTOP_H_ */

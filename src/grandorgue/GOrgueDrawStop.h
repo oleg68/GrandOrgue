@@ -30,7 +30,7 @@
 
 class GOrgueDisplayMetrics;
 
-class GOrgueDrawstop : public GOrgueControl
+class GOrgueDrawstop : public GOrgueControl, GOrgueDrawable
 {
 
 public:
@@ -46,22 +46,10 @@ public:
 	virtual ~GOrgueDrawstop();
 	void Load(IniFileConfig& cfg, wxString group, GOrgueDisplayMetrics* displayMetrics);
 	void Save(IniFileConfig& cfg, bool prefix, wxString group);
-//	virtual bool Draw(int xx, int yy, wxDC* dc = 0, wxDC* dc2 = 0);
+	virtual bool Draw(int xx, int yy, wxDC* dc = 0, wxDC* dc2 = 0);
 	void Push(void);
 	void MIDI(void);
 	virtual bool Set(bool on);
-
-	// Members of GO_IRenderable
-	virtual unsigned GetLayer();
-	virtual unsigned GetX();
-	virtual unsigned GetY();
-	virtual unsigned GetWidth();
-	virtual unsigned GetHeight();
-	virtual void Draw(wxDC& dc);
-
-	// Members of GO_IControl
-	virtual void MouseButtonDown(const unsigned x, const unsigned y, const GO_MouseButton button);
-	virtual void OnKeyEvent(const int wx_key, const unsigned flags);
 
 };
 

@@ -40,8 +40,8 @@ extern GOrgueSound* g_sound;
 #define GET_BIT(x,y,z) (x[y >> 3][z] & (0x80 >> (y & 7)) ? true : false)
 #define SET_BIT(x,y,z,b) (b ? x[y >> 3][z] |= (0x80 >> (y & 7)) : x[y >> 3][z] &= (0xFFFFFF7F >> (y & 7)))
 
-GOrgueFrameGeneral::GOrgueFrameGeneral(GOrgueDisplayMetrics& display_metrics):
-	GOrguePushbutton(display_metrics),
+GOrgueFrameGeneral::GOrgueFrameGeneral():
+	GOrguePushbutton(),
 	NumberOfStops(0),
 	NumberOfCouplers(0),
 	NumberOfTremulants(0),

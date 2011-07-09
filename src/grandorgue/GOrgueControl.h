@@ -24,11 +24,10 @@
 #define GORGUECONTROL_H
 
 #include <wx/wx.h>
-#include "GO_IControl.h"
 
 class IniFileConfig;
 
-class GOrgueControl : public GO_IControl
+class GOrgueControl 
 {
 
 public:
@@ -43,11 +42,6 @@ public:
 	wxInt16 DispLabelFontSize;
 	wxColour DispLabelColour;
 	wxString Name;
-
-	/**
-	 * Determines whether the control is displayed.
-	 */
-	virtual bool IsDisplayed() { return Displayed; }
 
 };
 

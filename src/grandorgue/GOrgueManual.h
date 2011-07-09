@@ -25,17 +25,15 @@
 
 #include <wx/wx.h>
 #include <vector>
-#include "GO_IControl.h"
 
 class GOrgueCoupler;
 class GOrgueDisplayMetrics;
+class GOrgueDivisional;
 class GOrgueStop;
 class GOrgueTremulant;
 class IniFileConfig;
-class GO_OrganScreen;
-class GOrgueDivisional;
 
-class GOrgueManual : public GO_IControl
+class GOrgueManual 
 {
 
 private:
@@ -52,6 +50,7 @@ private:
 
 	unsigned m_nb_stops;
 	unsigned m_nb_couplers;
+	unsigned m_nb_divisionals;
 	unsigned m_nb_tremulants;
 
 	wxInt16 m_tremulant_ids[10];
@@ -59,10 +58,8 @@ private:
 	wxString m_name;
 
 	std::vector<GOrgueStop*> m_stops;
-	std::vector<GOrgueDivisional*> m_Divisionals;
-
 	GOrgueCoupler* m_couplers;
-
+	GOrgueDivisional* m_divisionals;
 	bool m_displayed : 1;
 	bool m_key_colour_inverted : 1;
 	bool m_key_colour_wooden : 1;
@@ -73,10 +70,10 @@ private:
 public:
 
 	GOrgueManual();
-	void Load(IniFileConfig& cfg, wxString group, GOrgueDisplayMetrics* displayMetrics, int manualNumber, GO_OrganScreen& screen);
+	void Load(IniFileConfig& cfg, wxString group, GOrgueDisplayMetrics* displayMetrics, int manualNumber);
 	void Set(int note, bool on, bool pretend = false, int depth = 0, GOrgueCoupler* prev = 0);
 	void MIDI(void);
-	virtual ~GOrgueManual(void);
+	~GOrgueManual(void);
 
 	int GetNumberOfAccessibleKeys();
 	int GetFirstAccessibleKeyMIDINoteNumber();
@@ -95,18 +92,8 @@ public:
 	int GetTremulantCount();
 	GOrgueTremulant* GetTremulant(unsigned index);
 
-	// Members of GO_IRenderable
-	virtual unsigned GetLayer();
-	virtual unsigned GetX();
-	virtual unsigned GetY();
-	virtual unsigned GetWidth();
-	virtual unsigned GetHeight();
-	virtual void Draw(wxDC& dc);
-
-	// Members of GO_IControl
-	virtual void MouseButtonDown(const unsigned x, const unsigned y, const GO_MouseButton button);
-
 	void DrawKey(wxDC& dc, unsigned key_nb);
+	void Draw(wxDC& dc);
 	bool IsDisplayed();
 
 };

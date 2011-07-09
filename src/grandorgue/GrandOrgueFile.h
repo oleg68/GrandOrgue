@@ -28,8 +28,6 @@
 #include <wx/fileconf.h>
 #include <wx/filename.h>
 #include "GOrgueManual.h"
-#include "GO_OrganScreen.h"
-#include "GO_HW1Images.h"
 
 class GOrgueDisplayMetrics;
 class GOrgueDivisionalCoupler;
@@ -42,8 +40,6 @@ class GOrguePiston;
 class GOrguePushbutton;
 class GOrgueTremulant;
 class GOrgueWindchest;
-class GO_HW1Background;
-class GO_HW1Images;
 
 class GrandOrgueFile 
 {
@@ -60,7 +56,7 @@ public:
 	std::vector<wxInt16> m_pipe_percussive;
 	std::vector<int> m_pipe_amplitudes;
 
-private:
+public:
 
 	wxFileName m_path;
 	int m_b_squash;
@@ -82,7 +78,10 @@ private:
 	wxInt16 m_NumberOfEnclosures;
 	wxInt16 m_NumberOfTremulants;
 	wxInt16 m_NumberOfWindchestGroups;
+	wxInt16 m_NumberOfReversiblePistons;
 	wxInt16 m_NumberOfLabels;
+	wxInt16 m_NumberOfGenerals;
+	wxInt16 m_NumberOfFrameGenerals;
 	wxInt16 m_NumberOfDivisionalCouplers;
 	wxInt16 m_NumberOfStops;
 
@@ -108,17 +107,15 @@ private:
 	GOrgueEnclosure* m_enclosure;
 	GOrgueTremulant* m_tremulant;
 	GOrgueWindchest* m_windchest;
-	std::vector<GOrguePiston*> m_Pistons;
+	GOrguePiston* m_piston;
 	GOrgueLabel* m_label;
-	std::vector<GOrgueGeneral*> m_Generals;
-	std::vector<GOrgueFrameGeneral*> m_FrameGenerals;
+	GOrgueGeneral* m_general;
+	GOrgueFrameGeneral* m_framegeneral;
 	GOrgueDivisionalCoupler* m_divisionalcoupler;
 	GOrguePipe** m_pipe;
 
 	GOrgueManual m_manual[7];
-
-	GO_OrganScreen m_Screen;
-	GO_HW1Background* m_Background;
+	wxBitmap m_images[9];
 
 	void readOrganFile();
 	/*	int readOneFile(int file, char* buffer, unsigned length);
@@ -165,6 +162,8 @@ public:
 	bool CombinationsStoreNonDisplayedDrawstops();
 	bool GeneralsStoreDivisionalCouplers();
 
+	wxBitmap* GetImage(unsigned index);
+
 	long GetElapsedTime();
 	void SetElapsedTime(long elapsed);
 
@@ -188,9 +187,6 @@ public:
 	const wxString& GetInfoFilename();
 
 	void MIDIPretend(bool on);
-
-	GO_OrganScreen& GetOrganScreen();
-
 
 };
 

@@ -23,8 +23,6 @@
 #ifndef KEYCONVERT_H
 #define KEYCONVERT_H
 
-static
-inline
 int WXKtoVK(int what)
 {
     if ((what >= 'A' && what <= 'Z') || (what >= '0' && what <= '9') || what == WXK_SPACE || what == WXK_BACK || what == WXK_TAB || what == WXK_RETURN || what == WXK_ESCAPE)

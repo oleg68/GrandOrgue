@@ -29,15 +29,12 @@
 #include "MIDIListenDialog.h"
 #include "GOrgueDisplayMetrics.h"
 #include "GOrgueMidi.h"
-#include "OrganPanel.h"
-#include "KeyConvert.h"
 
 extern GrandOrgueFile* organfile;
 extern GOrgueSound* g_sound;
 
-GOrguePushbutton::GOrguePushbutton(GOrgueDisplayMetrics& display_metrics) :
+GOrguePushbutton::GOrguePushbutton() :
 	GOrgueControl(),
-	m_DisplayMetrics(display_metrics),
 	m_ManualNumber(0),
 	DispButtonRow(0),
 	DispButtonCol(0),
@@ -69,10 +66,40 @@ void GOrguePushbutton::MIDI(void)
 
 }
 
-void GOrguePushbutton::Load(IniFileConfig& cfg, wxString group)
+bool GOrguePushbutton::Draw(int xx, int yy, wxDC* dc, wxDC* dc2)
 {
-	DispButtonRow = cfg.ReadInteger(group, wxT("DispButtonRow"), 0, 99 + m_DisplayMetrics.NumberOfExtraButtonRows());
-	DispButtonCol = cfg.ReadInteger(group, wxT("DispButtonCol"), 1, m_DisplayMetrics.NumberOfButtonCols());
+	int x, y;
+	if (!Displayed)
+		return false;
+
+	DisplayMetrics->GetPushbuttonBlitPosition(DispButtonRow, DispButtonCol, &x, &y);
+
+	if (!DispKeyLabelOnLeft)
+		x -= 13;
+
+	if (!dc)
+		return !(xx < x || xx > x + 30 || yy < y || yy > y + 30 || (x + 15 - xx) * (x + 15 - xx) + (y + 15 - yy) * (y + 15 - yy) > 225);
+
+	wxMemoryDC mdc;
+	wxRect rect(x + 1, y + 1, 31 - 1, 30 - 1);
+	wxBitmap* bmp = organfile->GetImage(DispImageNum + 4);
+	dc->DrawBitmap(*bmp, x, y, true);
+	dc->SetTextForeground(DispLabelColour);
+	wxFont font = DisplayMetrics->GetControlLabelFont();
+	font.SetPointSize(DispLabelFontSize);
+	dc->SetFont(font);
+	dc->DrawLabel(Name, rect, wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL);
+	if (dc2)
+		dc2->Blit(x, y, 31, 30, dc, x, y);
+	return false;
+
+}
+
+void GOrguePushbutton::Load(IniFileConfig& cfg, wxString group, GOrgueDisplayMetrics* displayMetrics)
+{
+	DisplayMetrics = displayMetrics;
+	DispButtonRow = cfg.ReadInteger(group, wxT("DispButtonRow"), 0, 99 + displayMetrics->NumberOfExtraButtonRows());
+	DispButtonCol = cfg.ReadInteger(group, wxT("DispButtonCol"), 1, displayMetrics->NumberOfButtonCols());
 	DispImageNum = cfg.ReadInteger(group, wxT("DispImageNum"), 1, 2);
 	MIDIProgramChangeNumber = cfg.ReadInteger(group, wxT("MIDIProgramChangeNumber"), 1, 128);
 	DispImageNum--;
@@ -82,91 +109,4 @@ void GOrguePushbutton::Load(IniFileConfig& cfg, wxString group)
 void GOrguePushbutton::Save(IniFileConfig& cfg, bool prefix, wxString group)
 {
 	cfg.SaveHelper(prefix, group, wxT("MIDIProgramChangeNumber"), MIDIProgramChangeNumber);
-}
-
-unsigned GOrguePushbutton::GetLayer()
-{
-
-	return 1;
-
-}
-
-unsigned GOrguePushbutton::GetX()
-{
-
-	int x, y;
-	m_DisplayMetrics.GetPushbuttonBlitPosition(DispButtonRow, DispButtonCol, &x, &y);
-	return x;
-
-}
-
-unsigned GOrguePushbutton::GetY()
-{
-
-	int x, y;
-	m_DisplayMetrics.GetPushbuttonBlitPosition(DispButtonRow, DispButtonCol, &x, &y);
-	return y;
-
-}
-
-unsigned GOrguePushbutton::GetWidth()
-{
-
-	return 31;
-
-}
-
-unsigned GOrguePushbutton::GetHeight()
-{
-
-	return 30;
-
-}
-
-void GOrguePushbutton::Draw(wxDC& dc)
-{
-
-	int x, y;
-	m_DisplayMetrics.GetPushbuttonBlitPosition(DispButtonRow, DispButtonCol, &x, &y);
-
-	// Draw the button
-	wxBitmap& button_bitmap = m_DisplayMetrics.GetHW1Images().GetStopBitmap(DispImageNum + 4);
-	dc.DrawBitmap(button_bitmap, x, y, true);
-
-	// Draw the text
-	wxFont font = m_DisplayMetrics.GetControlLabelFont();
-	font.SetPointSize(DispLabelFontSize);
-	dc.SetFont(font);
-	dc.SetTextForeground(DispLabelColour);
-	wxRect rect(x + 1, y + 1, 30, 29);
-
-	OrganPanel::WrapText(dc, Name, 28);
-
-	dc.DrawLabel(Name, rect, wxALIGN_CENTER_HORIZONTAL | wxALIGN_CENTER_VERTICAL);
-
-}
-
-void GOrguePushbutton::MouseButtonDown(const unsigned x, const unsigned y, const GO_MouseButton button)
-{
-
-	if (button == MOUSE_CLICK_RIGHT)
-	{
-		MIDI();
-	}
-	else
-	{
-		Push();
-	}
-
-}
-
-void GOrguePushbutton::OnKeyEvent(const int wx_key, const unsigned flags)
-{
-
-	if ((flags & KEY_EVENT_UP) || (flags & KEY_EVENT_ALT))
-		return;
-
-	if (WXKtoVK(wx_key) == ShortcutKey)
-		Push();
-
 }
