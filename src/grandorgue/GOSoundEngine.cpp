@@ -347,6 +347,7 @@ void GetNextFrame
 			break;
 		case AC_UNCOMPRESSED_MONO:
 			monoUncompressed(sampler, buffer);
+			break;
 		default:
 			assert(0 && "broken sampler type");
 	}
