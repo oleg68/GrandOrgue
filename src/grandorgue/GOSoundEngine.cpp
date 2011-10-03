@@ -28,8 +28,6 @@
 #include "GOrgueWindchest.h"
 #include "GrandOrgueFile.h"
 
-#define ADDITIONAL_FADE_HEADROOM (1)
-
 /* This parameter determines the cross fade length. The length in samples
  * will be:
  *                    2 ^ (CROSSFADE_LEN_BITS + 1)
@@ -783,7 +781,7 @@ SAMPLER_HANDLE GOSoundEngine::StartSample(const GOSoundProvider* pipe, int sampl
 		//	}
 		sampler->gain = sampler->gain_target =
 				scalbnf(pipe->GetGain()
-				       ,ADDITIONAL_FADE_HEADROOM - sampler->pipe_section->sample_bits
+				       ,-sampler->pipe_section->sample_frac_bits
 				       );
 		sampler->time = m_CurrentTime;
 		StartSampler(sampler, sampler_group_id);
@@ -819,7 +817,7 @@ void GOSoundEngine::CreateReleaseSampler(const GO_SAMPLER* handle)
 			new_sampler->gain         = 0.0f;
 			new_sampler->gain_target  =
 					scalbnf(this_pipe->GetGain()
-					       ,ADDITIONAL_FADE_HEADROOM - release_section->sample_bits
+					       ,-release_section->sample_frac_bits
 					       );
 
 			const bool not_a_tremulant = (handle->sampler_group_id >= 0);
