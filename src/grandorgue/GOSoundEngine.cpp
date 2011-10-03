@@ -367,34 +367,34 @@ void ApplySamplerFade
 	 * FADE IS NEGATIVE. A positive fade would indicate a gain of zero.
 	 * Note: this for loop has been split by an if to aide the vectorizer.
 	 */
-	float fade_in_plus_out = sampler->gain_attack + sampler->gain_decay;
-	float fade = sampler->gain;
-	if (fade_in_plus_out)
+	float gain_delta = sampler->gain_attack + sampler->gain_decay;
+	float gain = sampler->gain;
+	if (gain_delta)
 	{
 
 		for(unsigned int i = 0; i < n_blocks / 2; i++, decoded_sampler_audio_frame += 4)
 		{
 
-			decoded_sampler_audio_frame[0] *= fade;
-			decoded_sampler_audio_frame[1] *= fade;
-			decoded_sampler_audio_frame[2] *= fade;
-			decoded_sampler_audio_frame[3] *= fade;
+			decoded_sampler_audio_frame[0] *= gain;
+			decoded_sampler_audio_frame[1] *= gain;
+			decoded_sampler_audio_frame[2] *= gain;
+			decoded_sampler_audio_frame[3] *= gain;
 
-			fade += fade_in_plus_out;
-			if (fade < 0.0f)
+			gain += gain_delta;
+			if (gain < 0.0f)
 			{
-				fade = 0.0f;
+				gain = 0.0f;
 				sampler->gain_decay = 0.0f;
 			}
-			else if (fade > sampler->gain_target)
+			else if (gain > sampler->gain_target)
 			{
-				fade = sampler->gain_target;
+				gain = sampler->gain_target;
 				sampler->gain_attack = 0.0f;
 			}
 
 		}
 
-		sampler->gain = fade;
+		sampler->gain = gain;
 
 	}
 	else
@@ -403,10 +403,10 @@ void ApplySamplerFade
 		for(unsigned int i = 0; i < n_blocks / 2; i++, decoded_sampler_audio_frame += 4)
 		{
 
-			decoded_sampler_audio_frame[0] *= fade;
-			decoded_sampler_audio_frame[1] *= fade;
-			decoded_sampler_audio_frame[2] *= fade;
-			decoded_sampler_audio_frame[3] *= fade;
+			decoded_sampler_audio_frame[0] *= gain;
+			decoded_sampler_audio_frame[1] *= gain;
+			decoded_sampler_audio_frame[2] *= gain;
+			decoded_sampler_audio_frame[3] *= gain;
 
 		}
 
