@@ -862,7 +862,7 @@ void GOSoundEngine::CreateReleaseSampler(const GO_SAMPLER* handle)
 			/* This determines the period of time the release is allowed to
 			 * fade in for in samples. 512 equates to roughly 12ms.
 			 */
-			new_sampler->faderemain = 512;
+			new_sampler->faderemain = 1 << (CROSSFADE_LEN_BITS + 1);
 
 			/* FIXME: this must be enabled again at some point soon */
 			if (m_ReleaseAlignmentEnabled && (release_section->release_aligner != NULL))
