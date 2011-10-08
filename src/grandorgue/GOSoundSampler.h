@@ -32,10 +32,10 @@ typedef struct GO_SAMPLER_T
 	const void            *creator;
 	float                  extra_gain;
 	int                    sampler_group_id;
-	GOSoundFader           fader;
-	GOSoundBlockReader     reader;
 	unsigned               time;
 	bool                   stop;
+	GOSoundFader           fader;
+	GOSoundBlockReader     reader;
 } GO_SAMPLER;
 
 #endif /* GOSOUNDSAMPLER_H_ */

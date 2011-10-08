@@ -30,10 +30,10 @@
 
 typedef struct
 {
-	int                        history[BLOCK_HISTORY][MAX_OUTPUT_CHANNELS];
 	const AUDIO_SECTION       *pipe_section;
 	float                      position;
 	float                      increment;
+	int                        history[BLOCK_HISTORY][MAX_OUTPUT_CHANNELS];
 } GOSoundBlockReader;
 
 typedef wxInt16 steroSample[0][2];
