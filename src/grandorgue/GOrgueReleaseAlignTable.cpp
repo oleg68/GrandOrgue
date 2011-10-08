@@ -80,11 +80,11 @@ bool GOrgueReleaseAlignTable::Save(wxOutputStream* cache)
 
 
 void GOrgueReleaseAlignTable::ComputeTable
-	(const AUDIO_SECTION& release
-	,const int phase_align_max_amplitude
-	,const int phase_align_max_derivative
-	,const unsigned int sample_rate
-	,const unsigned int channels
+	(const AUDIO_SECTION &release
+	,const int            phase_align_max_amplitude
+	,const int            phase_align_max_derivative
+	,const unsigned int   sample_rate
+	,const unsigned int   channels
 	)
 {
 
@@ -217,8 +217,8 @@ void GOrgueReleaseAlignTable::ComputeTable
 }
 
 void GOrgueReleaseAlignTable::SetupRelease
-	(GO_SAMPLER& release_sampler
-	,const GO_SAMPLER& old_sampler
+	(GOSoundBlockReader       &release_sampler
+	,const GOSoundBlockReader &old_sampler
 	) const
 {
 

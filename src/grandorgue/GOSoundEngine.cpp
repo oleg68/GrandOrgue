@@ -27,6 +27,7 @@
 #include "GOrgueReleaseAlignTable.h"
 #include "GOrgueWindchest.h"
 #include "GrandOrgueFile.h"
+#include "GOSoundSampler.h"
 
 /* This parameter determines the cross fade length. The length in samples
  * will be:
@@ -153,267 +154,33 @@ void GOSoundEngine::Setup(GrandOrgueFile* organ_file, unsigned release_count)
 	Reset();
 }
 
-typedef wxInt16 steroSample[0][2];
-
-/* The block decode functions should provide whatever the normal resolution of
- * the audio is. The fade engine should ensure that this data is always brought
- * into the correct range. */
-
-static
-inline
-void stereoUncompressed
-	(GO_SAMPLER* sampler
-	,float* output
-	)
-{
-
-	// "borrow" the output buffer to compute release alignment info
-	steroSample& input = (steroSample&)*(wxInt16*)(sampler->pipe_section->data);
-
-	// copy the sample buffer
-	for (unsigned int i = 0; i < BLOCKS_PER_FRAME; sampler->position += sampler->increment, output += 2, i++)
-	{
-		unsigned pos = (unsigned)sampler->position;
-		float fract = sampler->position - pos;
-		output[0] = input[pos][0] * (1 - fract) + input[pos + 1][0] * fract;
-		output[1] = input[pos][1] * (1 - fract) + input[pos + 1][1] * fract;
-	}
-
-	// update sample history (for release alignment / compression)
-	unsigned pos = (unsigned)sampler->position;
-	for (unsigned i = BLOCK_HISTORY; i > 0 && pos; i--, pos--)
-	{
-		sampler->history[i - 1][0] = input[pos][0];
-		sampler->history[i - 1][1] = input[pos][1];
-	}
-
-}
-
-static
-inline
-void monoUncompressed
-	(GO_SAMPLER* sampler
-	,float* output
-	)
-{
-
-	// copy the sample buffer
-	wxInt16* input = (wxInt16*)(sampler->pipe_section->data);
-	for (unsigned int i = 0; i < BLOCKS_PER_FRAME; i++, sampler->position += sampler->increment, output += 2)
-	{
-		unsigned pos = (unsigned)sampler->position;
-		float fract = sampler->position - pos;
-		output[0] = input[pos] * (1 - fract) + input[pos + 1] * fract;
-		output[1] = input[pos] * (1 - fract) + input[pos + 1] * fract;
-	}
-
-	// update sample history (for release alignment / compression)
-	unsigned pos = (unsigned)sampler->position;
-	for (unsigned i = BLOCK_HISTORY; i > 0 && pos; i--, pos--)
-		sampler->history[i - 1][0] = input[pos];
-
-}
-
-static
-inline
-void monoCompressed
-	(GO_SAMPLER* sampler
-	,float* output
-	)
-{
-
-	throw (wxString)_("unimplemented");
-
-    /*short* v=(short*)&sampler->v;
-    short* f=(short*)&sampler->f;
-    wxByte* input=sampler->ptr+sampler->position;
-
-    // we are in little endian, so the byte the most to the right is in input[0]
-    // check at the end of the first 32bits
-    if(input[0]&0x01)
-        // an int is 32 bit so we will use int
-    {
-        int inputAsInt=*(int*)input;
-        inputAsInt>>=1;
-        v[0]+=((char*)(&inputAsInt))[0];
-        v[1]+=((char*)(&inputAsInt))[0];
-        v[2]+=((char*)(&inputAsInt))[1];
-        v[3]+=((char*)(&inputAsInt))[1];
-        sampler->position+=4;
-
-    }
-    else
-    {
-        int inputAsInt1=*(int*)input;
-        inputAsInt1>>=1;
-
-        v[0]+=(((char*)(&inputAsInt1))[0]<<8)|((short)(input[2]));
-        v[1]+=(((char*)(&inputAsInt1))[0]<<8)|((short)(input[2]));
-        v[2]+=(((char*)(&inputAsInt1))[1]<<8)|((short)(input[3]));
-        v[3]+=(((char*)(&inputAsInt1))[1]<<8)|((short)(input[3]));
-        sampler->position+=8;
-    }
-
-    f[0]+=v[0];
-    f[1]+=v[1];
-    f[2]+=v[2];
-    f[3]+=v[3];
-
-
-    output[0] = f[0];
-    output[1] = f[1];
-    output[2] = f[2];
-    output[3] = f[3];*/
-
-}
-
-//if the data is compressed, 32 bits represents 4 data ((Right and Left) * 2)
-// we know the data is compressed because these 32bits ends with 1.
-//if the data is uncompressed, 64 bits represents 4 data
-// the first 32bits end with a 0.
-static
-inline
-void stereoCompressed
-	(GO_SAMPLER* sampler
-	,float* output
-	)
-{
-
-	throw (wxString)_("unimplemented");
-
-/*throw 0;
-
-	short* v=(short*)&sampler->v;
-	short* f=(short*)&sampler->f;
-	wxByte* input=sampler->ptr+sampler->position;
-
-	// we are in little endian, so the byte the most to the right is in input[0]
-	// check at the end of the first 32bits
-	if(input[0]&0x01)
-	{
-		// an int is 32 bit so we will use int
-		int inputAsInt=*(int*)input;
-		inputAsInt>>=1;
-		v[0]+=((char*)(&inputAsInt))[0];
-		v[1]+=((char*)(&inputAsInt))[1];
-		v[2]+=((char*)(&inputAsInt))[2];
-		v[3]+=((char*)(&inputAsInt))[3];
-		sampler->position+=4;
-
-	}
-	else
-	{
-		int inputAsInt1=*(int*)input;
-		inputAsInt1>>=1;
-
-		v[0]+=(((char*)(&inputAsInt1))[0]<<8)|((short)(input[4]));
-		v[1]+=(((char*)(&inputAsInt1))[1]<<8)|((short)(input[5]));
-		v[2]+=(((char*)(&inputAsInt1))[2]<<8)|((short)(input[6]));
-		v[3]+=(((char*)(&inputAsInt1))[3]<<8)|((short)(input[7]));
-		sampler->position+=8;
-	}
-
-	f[0]+=v[0];
-	f[1]+=v[1];
-	f[2]+=v[2];
-	f[3]+=v[3];
-
-
-	output[0] = f[0];
-    output[1] = f[1];
-    output[2] = f[2];
-    output[3] = f[3];
-*/
-}
-
-static
-inline
-void GetNextFrame
-	(GO_SAMPLER* sampler
-	,float* buffer
-	)
-{
-
-	switch (sampler->pipe_section->type)
-	{
-		case AC_COMPRESSED_STEREO:
-			stereoCompressed(sampler, buffer);
-			break;
-		case AC_UNCOMPRESSED_STEREO:
-			stereoUncompressed(sampler, buffer);
-			break;
-		case AC_COMPRESSED_MONO:
-			monoCompressed(sampler, buffer);
-			break;
-		case AC_UNCOMPRESSED_MONO:
-			monoUncompressed(sampler, buffer);
-			break;
-		default:
-			assert(0 && "broken sampler type");
-	}
-
-}
-
 inline
 void GOSoundEngine::ReadSamplerFrames
-	(GO_SAMPLER* sampler
-	,unsigned int n_blocks
-	,float* decoded_sampler_audio_frame
+	(GO_SAMPLER   *sampler
+	,unsigned int  n_blocks
+	,float        *decoded_sampler_audio_frame
 	)
 {
-
-	for(unsigned int i = 0; i < n_blocks; i += BLOCKS_PER_FRAME, decoded_sampler_audio_frame += BLOCKS_PER_FRAME * 2)
+	for (unsigned int i = 0
+	    ;i < n_blocks
+	    ;i += BLOCKS_PER_FRAME
+	    ,decoded_sampler_audio_frame += BLOCKS_PER_FRAME * 2
+	    )
 	{
-
-		if (!sampler->pipe)
+		if (sampler->pipe)
+		{
+			if (!GetNextFrame(&sampler->reader, decoded_sampler_audio_frame, m_SampleRate))
+				sampler->pipe = NULL;
+		}
+		else
 		{
 			std::fill
 				(decoded_sampler_audio_frame
 				,decoded_sampler_audio_frame + (BLOCKS_PER_FRAME * 2)
 				,0.0f
 				);
-			continue;
 		}
-
-		GetNextFrame(sampler, decoded_sampler_audio_frame);
-
-		if (sampler->pipe_section->stage == GSS_RELEASE)
-		{
-
-			/* If this is the end of the release, and there are no more
-			 * samples to play back, the sampler is no-longer needed.
-			 * We can set the pipe to NULL and break out of this loop.
-			 */
-			assert(sampler->pipe);
-			if (sampler->position >= sampler->pipe->GetRelease()->sample_count)
-				sampler->pipe = NULL;
-
-		}
-		else
-		{
-			unsigned currentBlockSize = sampler->pipe_section->sample_count;
-			if (sampler->position >= currentBlockSize)
-			{
-				sampler->pipe_section = sampler->pipe->GetLoop();
-				if (sampler->pipe_section->data == NULL)
-				{
-					/* the pipe is percussive and the attack has completed
-					 * so we are therefore finished with this sampler. */
-					sampler->pipe = NULL;
-				}
-				else
-				{
-					/* the pipe is not percussive (normal). The loop or
-					 * attack segment has completed so we now (re)enter the
-					 * loop. */
-					sampler->position -= currentBlockSize;
-					sampler->increment = sampler->pipe_section->sample_rate / (float) m_SampleRate;
-				}
-			}
-		}
-
 	}
-
 }
 
 void GOSoundEngine::ProcessAudioSamplers(GOSamplerEntry& state, unsigned int n_frames, float* output_buffer)
@@ -444,7 +211,7 @@ void GOSoundEngine::ProcessAudioSamplers(GOSamplerEntry& state, unsigned int n_f
 			if  (
 					(m_PolyphonyLimiting) &&
 					(m_SamplerPool.UsedSamplerCount() >= m_PolyphonySoftLimit) &&
-					(sampler->pipe_section->stage == GSS_RELEASE) &&
+					(IsFinalSection(&sampler->reader)) &&
 					(m_CurrentTime - sampler->time > 172)
 				)
 				FaderStartDecay(&sampler->fader, -13); /* Approx 0.37s at 44.1kHz */
@@ -688,22 +455,23 @@ SAMPLER_HANDLE GOSoundEngine::StartSample(const GOSoundProvider* pipe, int sampl
 	GO_SAMPLER* sampler = m_SamplerPool.GetSampler();
 	if (sampler)
 	{
-		sampler->pipe = pipe;
-		sampler->pipe_section = pipe->GetAttack();
-		sampler->increment = sampler->pipe_section->sample_rate / (float) m_SampleRate;
-		sampler->position = 0;
-		memcpy
-			(sampler->history
-			,pipe->GetAttack()->history
-			,sizeof(sampler->history)
+		unsigned start_position = 0;
+#if 0
+		if (g_sound->HasRandomPipeSpeech())
+		{
+			start_position += rand() % 32;
+		}
+#endif
+		float scaling;
+		InitBlockReader
+			(&sampler->reader
+			,start_position
+			,m_SampleRate
+			,pipe->GetAttack()
+			,&scaling
 			);
-		//	else
-		//	{
-		//		sampler->stage = GSS_ATTACK;
-		//		if (g_sound->HasRandomPipeSpeech() && !g_sound->windchests[m_WindchestGroup])
-		//			sampler->position = rand() & 0x78;
-		//	}
-		const float playback_gain = scalbnf(pipe->GetGain(), -sampler->pipe_section->sample_frac_bits);
+		sampler->pipe = pipe;
+		const float playback_gain = pipe->GetGain() * scaling;
 		FaderNewConstant(&sampler->fader, playback_gain);
 		sampler->time = m_CurrentTime;
 		StartSampler(sampler, sampler_group_id);
@@ -732,19 +500,23 @@ void GOSoundEngine::CreateReleaseSampler(const GO_SAMPLER* handle)
 
 			const AUDIO_SECTION* release_section = this_pipe->GetRelease();
 			new_sampler->pipe         = this_pipe;
-			new_sampler->pipe_section = release_section;
-			new_sampler->position     = 0;
-			new_sampler->increment    = new_sampler->pipe_section->sample_rate / (float) m_SampleRate;
 			new_sampler->time         = m_CurrentTime + 1;
 
-			int gain_decay_rate = 0;
-			float gain_target =
-					scalbnf(this_pipe->GetGain()
-					       ,-release_section->sample_frac_bits
-					       );
+			float scaling;
+			InitBlockReader
+				(&new_sampler->reader
+				,0
+				,m_SampleRate
+				,release_section
+				,&scaling
+				);
+			if (m_ReleaseAlignmentEnabled && (release_section->release_aligner != NULL))
+				release_section->release_aligner->SetupRelease(new_sampler->reader, handle->reader);
 
-			const bool not_a_tremulant = (handle->sampler_group_id >= 0);
-			if (not_a_tremulant)
+			float gain_target = this_pipe->GetGain() * scaling;
+			int gain_decay_rate = 0;
+			int windchest_index;
+			if (handle->sampler_group_id >= 0) /* if this is not a tremulant */
 			{
 				gain_target *= vol;
 				if (m_ScaledReleases)
@@ -755,35 +527,7 @@ void GOSoundEngine::CreateReleaseSampler(const GO_SAMPLER* handle)
 					if (time < 1024)
 						gain_decay_rate = -15; /* results in approx 1.5 second maximum decay length */
 				}
-			}
 
-			FaderNewAttacking
-				(&new_sampler->fader
-				,gain_target
-				,-(CROSSFADE_LEN_BITS)
-				,1 << (CROSSFADE_LEN_BITS + 1)
-				);
-			if (gain_decay_rate < 0)
-				FaderStartDecay(&new_sampler->fader, gain_decay_rate);
-
-			/* FIXME: this must be enabled again at some point soon */
-			if (m_ReleaseAlignmentEnabled && (release_section->release_aligner != NULL))
-			{
-				release_section->release_aligner->SetupRelease(*new_sampler, *handle);
-			}
-			else
-			{
-				new_sampler->position = 0; //m_release.offset;
-				memcpy
-					(new_sampler->history
-					,release_section->history
-					,sizeof(new_sampler->history)
-					);
-			}
-
-			int windchest_index;
-			if (not_a_tremulant)
-			{
 				/* detached releases are enabled and the pipe was on a regular
 				 * windchest. Play the release on the detached windchest */
 				int detached_windchest_index = 0;
@@ -801,6 +545,17 @@ void GOSoundEngine::CreateReleaseSampler(const GO_SAMPLER* handle)
 				 * means it will still be affected by tremulants - yuck). */
 				windchest_index = handle->sampler_group_id;
 			}
+
+			FaderNewAttacking
+				(&new_sampler->fader
+				,gain_target
+				,-(CROSSFADE_LEN_BITS)
+				,1 << (CROSSFADE_LEN_BITS + 1)
+				);
+
+			if (gain_decay_rate < 0)
+				FaderStartDecay(&new_sampler->fader, gain_decay_rate);
+
 			StartSampler(new_sampler, windchest_index);
 		}
 

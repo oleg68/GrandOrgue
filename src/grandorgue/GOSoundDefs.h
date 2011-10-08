@@ -20,45 +20,28 @@
  * MA 02111-1307, USA.
  */
 
-#ifndef GOSOUNDSAMPLERPOOL_H_
-#define GOSOUNDSAMPLERPOOL_H_
+#ifndef GOSOUNDDEFS_H_
+#define GOSOUNDDEFS_H_
 
-#include <wx/wx.h>
+/* Number of samples to store from previous block decode as history. This may
+ * be needed for features such as release alignment and compression. */
+#define BLOCK_HISTORY          2
 
-#include "GrandOrgueDef.h"
-#include "GOSoundSampler.h"
-#include "ptrvector.h"
+/* BLOCKS_PER_FRAME specifies the number of mono samples or stereo sample
+ * pairs which are decoded for each iteration of the audio engines main loop.
+ * Setting this value too low will result in inefficiencies or certain
+ * features (compression) failing to work. */
+#define BLOCKS_PER_FRAME       64
 
-class GOSoundSamplerPool
-{
+/* Number of extra samples to avoid out of array accesses */
+#define EXTRA_FRAMES           128
 
-private:
-	wxCriticalSection  m_Lock;
-	unsigned           m_SamplerCount;
-	unsigned           m_UsageLimit;
-	GO_SAMPLER        *m_AvailableSamplers;
-	ptr_vector<GO_SAMPLER> m_Samplers;
+/* Maximum number of blocks (1 block is nChannels samples) per frame */
+#define MAX_FRAME_SIZE         1024
 
-public:
-	GOSoundSamplerPool();
-	GO_SAMPLER* GetSampler();
-	void ReturnSampler(GO_SAMPLER* sampler);
-	void ReturnAll();
-	unsigned GetUsageLimit() const;
-	void SetUsageLimit(unsigned count);
-	unsigned UsedSamplerCount() const;
-};
+/* Maximum number of channels the engine supports. This value can not be
+ * changed at present.
+ */
+#define MAX_OUTPUT_CHANNELS    2
 
-inline
-unsigned GOSoundSamplerPool::GetUsageLimit() const
-{
-	return m_UsageLimit;
-}
-
-inline
-unsigned GOSoundSamplerPool::UsedSamplerCount() const
-{
-	return m_SamplerCount;
-}
-
-#endif /* GOSOUNDSAMPLERPOOL_H_ */
+#endif /* GOSOUNDDEFS_H_ */

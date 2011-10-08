@@ -23,7 +23,6 @@
 #ifndef GOSOUNDENGINE_H_
 #define GOSOUNDENGINE_H_
 
-#include "GOrgueSoundTypes.h"
 #include "GOSoundSamplerPool.h"
 #include "GrandOrgueDef.h"
 #include <vector>

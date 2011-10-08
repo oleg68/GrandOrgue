@@ -23,11 +23,11 @@
 #ifndef GORGUERELEASEALIGNTABLE_H_
 #define GORGUERELEASEALIGNTABLE_H_
 
+#include "GOSoundBlockReader.h"
+
 #define PHASE_ALIGN_DERIVATIVES    2
 #define PHASE_ALIGN_AMPLITUDES     32
 #define PHASE_ALIGN_MIN_FREQUENCY  20 /* Hertz */
-
-#include "GOrgueSoundTypes.h"
 
 class wxInputStream;
 class wxOutputStream;
@@ -52,16 +52,16 @@ public:
 	bool Save(wxOutputStream* cache);
 
 	void ComputeTable
-		(const AUDIO_SECTION_T& m_release
-		,const int phase_align_max_amplitude
-		,const int phase_align_max_derivative
-		,const unsigned int sample_rate
-		,const unsigned int channels
+		(const AUDIO_SECTION_T &m_release
+		,int                    phase_align_max_amplitude
+		,int                    phase_align_max_derivative
+		,unsigned int           sample_rate
+		,unsigned int           channels
 		);
 
 	void SetupRelease
-		(GO_SAMPLER_T& release_sampler
-		,const GO_SAMPLER_T& old_sampler
+		(GOSoundBlockReader       &release_sampler
+		,const GOSoundBlockReader &old_sampler
 		) const;
 
 };

@@ -107,6 +107,10 @@ bool GOSoundProvider::LoadCache(wxInputStream* cache)
 	if (!LoadCacheAudioSection(cache, &m_Release, true))
 		return false;
 
+	m_Attack.next = &m_Loop;
+	m_Loop.next = &m_Loop;
+	m_Release.next = NULL;
+
 	return true;
 
 }
