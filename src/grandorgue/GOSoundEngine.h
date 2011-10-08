@@ -118,7 +118,7 @@ private:
 	*/
 	void StartSampler(GO_SAMPLER* sampler, int sampler_group_id);
 	void CreateReleaseSampler(const GO_SAMPLER* sampler);
-	void ReadSamplerFrames(GO_SAMPLER* sampler, unsigned int n_blocks, float* decoded_sampler_audio_frame);
+	bool ReadSamplerFrames(GO_SAMPLER* sampler, unsigned int n_blocks, float* decoded_sampler_audio_frame);
 	void ProcessAudioSamplers (GOSamplerEntry& state, unsigned int n_frames, float* output_buffer);
 	void ResetDoneFlags();
 
@@ -136,8 +136,8 @@ public:
 	int GetVolume() const;
 	void SetScaledReleases(bool enable);
 
-	SAMPLER_HANDLE StartSample(const GOSoundProvider *pipe, int sampler_group_id);
-	void StopSample(const GOSoundProvider *pipe, SAMPLER_HANDLE handle);
+	SAMPLER_HANDLE StartSample(const void *creator, int sampler_group_id, const AUDIO_SECTION *start_section, float extra_gain);
+	void StopSample(const void *creator, SAMPLER_HANDLE handle);
 
 	int GetSamples
 		(float      *output_buffer

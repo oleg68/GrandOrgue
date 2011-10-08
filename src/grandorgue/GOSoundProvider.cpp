@@ -108,8 +108,11 @@ bool GOSoundProvider::LoadCache(wxInputStream* cache)
 		return false;
 
 	m_Attack.next = &m_Loop;
+	m_Attack.release_to = &m_Release;
 	m_Loop.next = &m_Loop;
+	m_Loop.release_to = &m_Release;
 	m_Release.next = NULL;
+	m_Release.release_to = NULL;
 
 	return true;
 

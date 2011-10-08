@@ -843,7 +843,12 @@ SAMPLER_HANDLE GrandOrgueFile::StartSample(const GOSoundProvider *pipe, int samp
 {
 	if (!m_soundengine)
 		return NULL;
-	return m_soundengine->StartSample(pipe, sampler_group_id);
+	return m_soundengine->StartSample
+			((void*)pipe
+			,sampler_group_id
+			,pipe->GetAttack()
+			,pipe->GetGain()
+			);
 }
 
 void GrandOrgueFile::StopSample(const GOSoundProvider *pipe, SAMPLER_HANDLE handle)

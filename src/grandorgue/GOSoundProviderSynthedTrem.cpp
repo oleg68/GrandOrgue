@@ -45,12 +45,15 @@ void GOSoundProviderSynthedTrem::Create
 	m_Channels                 = 1;
 	m_Attack.sample_frac_bits  = 15;
 	m_Attack.next              = &m_Loop;
+	m_Attack.release_to        = &m_Release;
 	m_Attack.type              = (m_Channels == 1) ? AC_UNCOMPRESSED_MONO : AC_UNCOMPRESSED_STEREO;
 	m_Loop.sample_frac_bits    = 15;
 	m_Loop.next                = &m_Loop;
+	m_Loop.release_to          = &m_Release;
 	m_Loop.type                = (m_Channels == 1) ? AC_UNCOMPRESSED_MONO : AC_UNCOMPRESSED_STEREO;
 	m_Release.sample_frac_bits = 15;
 	m_Release.next             = NULL;
+	m_Release.release_to       = NULL;
 	m_Release.type             = (m_Channels == 1) ? AC_UNCOMPRESSED_MONO : AC_UNCOMPRESSED_STEREO;
 
 	double trem_freq = 1000.0 / period;

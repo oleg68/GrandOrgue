@@ -61,6 +61,7 @@ typedef struct AUDIO_SECTION_T
 	unsigned                   sample_frac_bits;
 
 	struct AUDIO_SECTION_T    *next;
+	struct AUDIO_SECTION_T    *release_to;
 
 } AUDIO_SECTION;
 

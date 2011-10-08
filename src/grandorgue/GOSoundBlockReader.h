@@ -287,4 +287,12 @@ InitBlockReader
 		);
 }
 
+bool   /** Returns true if the release_transient structure was initialised */
+BlockReaderGetReleaseReader
+	(const GOSoundBlockReader *reader_to_abort
+	,bool                      use_release_alignment
+	,GOSoundBlockReader       *release_transient
+	,float                    *required_scaling
+	);
+
 #endif /* GOSOUNDBLOCKREADER_H_ */

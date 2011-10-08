@@ -21,10 +21,8 @@
  */
 
 #include "GOSoundEngine.h"
-#include "GOSoundProvider.h"
 #include "GOrgueEvent.h"
 #include "GOrguePipe.h"
-#include "GOrgueReleaseAlignTable.h"
 #include "GOrgueWindchest.h"
 #include "GrandOrgueFile.h"
 #include "GOSoundSampler.h"
@@ -155,22 +153,23 @@ void GOSoundEngine::Setup(GrandOrgueFile* organ_file, unsigned release_count)
 }
 
 inline
-void GOSoundEngine::ReadSamplerFrames
+bool
+GOSoundEngine::ReadSamplerFrames
 	(GO_SAMPLER   *sampler
 	,unsigned int  n_blocks
 	,float        *decoded_sampler_audio_frame
 	)
 {
+	bool still_playable = true;
 	for (unsigned int i = 0
 	    ;i < n_blocks
 	    ;i += BLOCKS_PER_FRAME
 	    ,decoded_sampler_audio_frame += BLOCKS_PER_FRAME * 2
 	    )
 	{
-		if (sampler->pipe)
+		if (still_playable)
 		{
-			if (!GetNextFrame(&sampler->reader, decoded_sampler_audio_frame, m_SampleRate))
-				sampler->pipe = NULL;
+			still_playable = GetNextFrame(&sampler->reader, decoded_sampler_audio_frame, m_SampleRate);
 		}
 		else
 		{
@@ -181,6 +180,7 @@ void GOSoundEngine::ReadSamplerFrames
 				);
 		}
 	}
+	return still_playable;
 }
 
 void GOSoundEngine::ProcessAudioSamplers(GOSamplerEntry& state, unsigned int n_frames, float* output_buffer)
@@ -204,6 +204,7 @@ void GOSoundEngine::ProcessAudioSamplers(GOSamplerEntry& state, unsigned int n_f
 	for (GO_SAMPLER* sampler = state.sampler; sampler; sampler = next_sampler)
 	{
 
+		bool finished = false;
 		const bool process_sampler = (sampler->time <= m_CurrentTime);
 		if (process_sampler)
 		{
@@ -224,7 +225,7 @@ void GOSoundEngine::ProcessAudioSamplers(GOSamplerEntry& state, unsigned int n_f
 			 *
 			 *     playback gain * (2 ^ -sampler->pipe_section->sample_bits)
 			 */
-			ReadSamplerFrames
+			finished = !ReadSamplerFrames
 				(sampler
 				,n_frames
 				,state.temp
@@ -271,7 +272,7 @@ void GOSoundEngine::ProcessAudioSamplers(GOSamplerEntry& state, unsigned int n_f
 		 * zero, the sample is no longer required and can be removed from the
 		 * linked list. If it was still supplying audio, we must update the
 		 * previous valid sampler. */
-		if (!sampler->pipe || (FaderIsSilent(&sampler->fader) && process_sampler))
+		if (finished || (FaderIsSilent(&sampler->fader) && process_sampler))
 		{
 			/* sampler needs to be removed from the list */
 			if (sampler == state.sampler)
@@ -450,7 +451,12 @@ int GOSoundEngine::GetSamples
 }
 
 
-SAMPLER_HANDLE GOSoundEngine::StartSample(const GOSoundProvider* pipe, int sampler_group_id)
+SAMPLER_HANDLE GOSoundEngine::StartSample
+	(const void *creator
+	,int sampler_group_id
+	,const AUDIO_SECTION *start_section
+	,float extra_gain
+	)
 {
 	GO_SAMPLER* sampler = m_SamplerPool.GetSampler();
 	if (sampler)
@@ -467,12 +473,12 @@ SAMPLER_HANDLE GOSoundEngine::StartSample(const GOSoundProvider* pipe, int sampl
 			(&sampler->reader
 			,start_position
 			,m_SampleRate
-			,pipe->GetAttack()
+			,start_section
 			,&scaling
 			);
-		sampler->pipe = pipe;
-		const float playback_gain = pipe->GetGain() * scaling;
-		FaderNewConstant(&sampler->fader, playback_gain);
+		sampler->creator          = creator;
+		sampler->extra_gain       = extra_gain;
+		FaderNewConstant(&sampler->fader, extra_gain * scaling);
 		sampler->time = m_CurrentTime;
 		StartSampler(sampler, sampler_group_id);
 	}
@@ -481,10 +487,9 @@ SAMPLER_HANDLE GOSoundEngine::StartSample(const GOSoundProvider* pipe, int sampl
 
 void GOSoundEngine::CreateReleaseSampler(const GO_SAMPLER* handle)
 {
-	if (!handle->pipe)
+	if (!handle->creator)
 		return;
 
-	const GOSoundProvider* this_pipe = handle->pipe;
 	float vol = (handle->sampler_group_id < 0)
 	          ? 1.0f
 	          : m_Windchests[handle->sampler_group_id - 1].windchest->GetVolume();
@@ -492,88 +497,93 @@ void GOSoundEngine::CreateReleaseSampler(const GO_SAMPLER* handle)
 	// FIXME: this is wrong... the intention is to not create a release for a
 	// sample being played back with zero amplitude but this is a comparison
 	// against a double. We should test against a minimum level.
-	if (vol)
+	if (!vol)
+		return;
+
+	GO_SAMPLER* new_sampler = m_SamplerPool.GetSampler();
+	if (!new_sampler)
+		return;
+
+	/* ABORT HERE */
+	float gain_target;
+	bool has_release = BlockReaderGetReleaseReader
+		(&handle->reader
+		,m_ReleaseAlignmentEnabled
+		,&new_sampler->reader
+		,&gain_target
+		);
+
+	if (!has_release)
 	{
-		GO_SAMPLER* new_sampler = m_SamplerPool.GetSampler();
-		if (new_sampler != NULL)
+		m_SamplerPool.ReturnSampler(new_sampler);
+		return;
+	}
+
+	new_sampler->time       = m_CurrentTime + 1;
+	new_sampler->creator    = handle->creator;
+	new_sampler->extra_gain = handle->extra_gain;
+	gain_target             *= handle->extra_gain;
+
+	int gain_decay_rate = 0;
+	if (handle->sampler_group_id >= 0) /* if this is not a tremulant */
+	{
+		gain_target *= vol;
+		if (m_ScaledReleases)
 		{
-
-			const AUDIO_SECTION* release_section = this_pipe->GetRelease();
-			new_sampler->pipe         = this_pipe;
-			new_sampler->time         = m_CurrentTime + 1;
-
-			float scaling;
-			InitBlockReader
-				(&new_sampler->reader
-				,0
-				,m_SampleRate
-				,release_section
-				,&scaling
-				);
-			if (m_ReleaseAlignmentEnabled && (release_section->release_aligner != NULL))
-				release_section->release_aligner->SetupRelease(new_sampler->reader, handle->reader);
-
-			float gain_target = this_pipe->GetGain() * scaling;
-			int gain_decay_rate = 0;
-			int windchest_index;
-			if (handle->sampler_group_id >= 0) /* if this is not a tremulant */
-			{
-				gain_target *= vol;
-				if (m_ScaledReleases)
-				{
-					int time = ((m_CurrentTime - handle->time) * (10 * BLOCKS_PER_FRAME)) / 441;
-					if (time < 256)
-						gain_target *= 0.5f + time * (1.0f / 512.0f);
-					if (time < 1024)
-						gain_decay_rate = -15; /* results in approx 1.5 second maximum decay length */
-				}
-
-				/* detached releases are enabled and the pipe was on a regular
-				 * windchest. Play the release on the detached windchest */
-				int detached_windchest_index = 0;
-				for(unsigned i = 1; i < m_DetachedRelease.size(); i++)
-					if (m_DetachedRelease[i].count < m_DetachedRelease[detached_windchest_index].count)
-						detached_windchest_index = i;
-				if (detached_windchest_index)
-					detached_windchest_index += m_Windchests.size();
-				windchest_index = detached_windchest_index;
-			}
-			else
-			{
-				/* detached releases are disabled (or this isn't really a pipe)
-				 * so put the release on the same windchest as the pipe (which
-				 * means it will still be affected by tremulants - yuck). */
-				windchest_index = handle->sampler_group_id;
-			}
-
-			FaderNewAttacking
-				(&new_sampler->fader
-				,gain_target
-				,-(CROSSFADE_LEN_BITS)
-				,1 << (CROSSFADE_LEN_BITS + 1)
-				);
-
-			if (gain_decay_rate < 0)
-				FaderStartDecay(&new_sampler->fader, gain_decay_rate);
-
-			StartSampler(new_sampler, windchest_index);
+			int time = ((m_CurrentTime - handle->time) * (10 * BLOCKS_PER_FRAME)) / 441;
+			if (time < 256)
+				gain_target *= 0.5f + time * (1.0f / 512.0f);
+			if (time < 1024)
+				gain_decay_rate = -15; /* results in approx 1.5 second maximum decay length */
 		}
 
 	}
+
+	FaderNewAttacking
+		(&new_sampler->fader
+		,gain_target
+		,-(CROSSFADE_LEN_BITS)
+		,1 << (CROSSFADE_LEN_BITS + 1)
+		);
+
+	if (gain_decay_rate < 0)
+		FaderStartDecay(&new_sampler->fader, gain_decay_rate);
+
+	int windchest_index;
+	if (handle->sampler_group_id >= 0) /* if this is not a tremulant */
+	{
+		/* detached releases are enabled and the pipe was on a regular
+		 * windchest. Play the release on the detached windchest */
+		int detached_windchest_index = 0;
+		for(unsigned i = 1; i < m_DetachedRelease.size(); i++)
+			if (m_DetachedRelease[i].count < m_DetachedRelease[detached_windchest_index].count)
+				detached_windchest_index = i;
+		if (detached_windchest_index)
+			detached_windchest_index += m_Windchests.size();
+		windchest_index = detached_windchest_index;
+	}
+	else
+	{
+		/* detached releases are disabled (or this isn't really a pipe)
+		 * so put the release on the same windchest as the pipe (which
+		 * means it will still be affected by tremulants - yuck). */
+		windchest_index = handle->sampler_group_id;
+	}
+
+	StartSampler(new_sampler, windchest_index);
 }
 
 
-void GOSoundEngine::StopSample(const GOSoundProvider *pipe, SAMPLER_HANDLE handle)
+void GOSoundEngine::StopSample(const void *creator, SAMPLER_HANDLE handle)
 {
-
 	assert(handle);
-	assert(pipe);
+	assert(creator);
 
 	// The following condition could arise if a one-shot sample is played,
 	// decays away (and hence the sampler is discarded back into the pool), and
 	// then the user releases a key. If the sampler had already been reused
 	// with another pipe, that sample would erroneously be told to decay.
-	if (pipe != handle->pipe)
+	if (creator != handle->creator)
 		return;
 
 	handle->stop = true;
