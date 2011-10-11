@@ -20,13 +20,18 @@
  * MA 02111-1307, USA.
  */
 
+#include "GOGUIDrawStop.h"
 #include "GOGUIEnclosure.h"
 #include "GOGUILabel.h"
 #include "GOGUIHW1Background.h"
 #include "GOGUIPanel.h"
+#include "GOGUIPushbutton.h"
 #include "GOGUISetterButton.h"
 #include "GOGUISetterDisplayMetrics.h"
+#include "GOrgueCoupler.h"
+#include "GOrgueDivisional.h"
 #include "GOrgueFrameGeneral.h"
+#include "GOrgueManual.h"
 #include "GOrgueMeter.h"
 #include "GOrgueSetter.h"
 #include "GOrgueSetterButton.h"
@@ -250,14 +255,14 @@ GOGUIControl* GOrgueSetter::CreateGUIElement(IniFileConfig& cfg, wxString group,
 	unsigned element  = cfg.ReadEnum(group, wxT("Type"), m_setter_element_types, sizeof(m_setter_element_types) / sizeof(m_setter_element_types[0]), true);
 	if (element == ID_SETTER_LABEL)
 	{
-		GOGUILabel* PosDisplay=new GOGUILabel(panel, &m_PosDisplay);
-		PosDisplay->Init(cfg, 350, 10, group);
+		GOGUILabel* PosDisplay=new GOGUILabel(panel, &m_PosDisplay, 350, 10);
+		PosDisplay->Load(cfg, group);
 		return PosDisplay;
 	}
 	if (element == ID_SETTER_CRESCENDO_LABEL)
 	{
-		GOGUILabel* PosDisplay=new GOGUILabel(panel, &m_CrescendoDisplay);
-		PosDisplay->Init(cfg, 350, 10, group);
+		GOGUILabel* PosDisplay=new GOGUILabel(panel, &m_CrescendoDisplay, 350, 10);
+		PosDisplay->Load(cfg, group);
 		return PosDisplay;
 	}
 	if (element == ID_SETTER_CRESCENDO_SWELL)
@@ -270,6 +275,128 @@ GOGUIControl* GOrgueSetter::CreateGUIElement(IniFileConfig& cfg, wxString group,
 	GOGUISetterButton* button = new GOGUISetterButton(panel, m_button[element]);
 	button->Init(cfg, 1, 1, group);
 	return button;
+}
+
+GOGUIPanel* GOrgueSetter::CreateCouplerPanel(IniFileConfig& cfg, unsigned manual_nr)
+{
+	GOGUIControl* control;
+	GOrgueManual* manual = m_organfile->GetManual(manual_nr);
+
+	GOGUIPanel* panel = new GOGUIPanel(m_organfile);
+	GOGUIDisplayMetrics* metrics = new GOGUISetterDisplayMetrics(cfg, m_organfile, wxString::Format(wxT("SetterCouplers%03d"), manual_nr), GOGUI_SETTER_COUPLER);
+	panel->Init(cfg, metrics, wxString::Format(_("Coupler %s"), manual->GetName().c_str()), wxString::Format(wxT("SetterCouplers%03d"), manual_nr));
+
+	control = new GOGUIHW1Background(panel);
+	panel->AddControl(control);
+
+	for (unsigned int i = m_organfile->GetFirstManualIndex(); i <= m_organfile->GetManualAndPedalCount(); i++)
+	{
+		int x, y;
+		GOrgueManual* dest_manual = m_organfile->GetManual(i);
+		GOrgueCoupler* coupler;
+
+		metrics->GetDrawstopBlitPosition(100 + i, 1, &x, &y);
+
+		GOGUILabel* PosDisplay=new GOGUILabel(panel, NULL, x, y, dest_manual->GetName());
+		PosDisplay->Load(cfg, wxString::Format(wxT("SetterCoupler%03dLabel%03d"), manual_nr, i));
+		panel->AddControl(PosDisplay);
+
+		coupler = new GOrgueCoupler(m_organfile, manual_nr);
+		coupler->Load(cfg, wxString::Format(wxT("SetterManual%03dCoupler%03dT16"), manual_nr, i), _("16"), false, false, -12, i, GOrgueCoupler::COUPLER_NORMAL);
+		manual->AddCoupler(coupler);
+		control = new GOGUIDrawstop(panel, coupler, 2, 100 + i);
+		control->Load(cfg, wxString::Format(wxT("SetterManual%03dCoupler%03dT16"), manual_nr, i));
+		panel->AddControl(control);
+
+		coupler = new GOrgueCoupler(m_organfile, manual_nr);
+		coupler->Load(cfg, wxString::Format(wxT("SetterManual%03dCoupler%03dT16"), manual_nr, i), manual_nr != i ? _("8") : _("U.O."), manual_nr == i, false, 0, i, GOrgueCoupler::COUPLER_NORMAL);
+		manual->AddCoupler(coupler);
+		control = new GOGUIDrawstop(panel, coupler, 3, 100 + i);
+		control->Load(cfg, wxString::Format(wxT("SetterManual%03dCoupler%03dT16"), manual_nr, i));
+		panel->AddControl(control);
+
+		coupler = new GOrgueCoupler(m_organfile, manual_nr);
+		coupler->Load(cfg, wxString::Format(wxT("SetterManual%03dCoupler%03dT4"), manual_nr, i), _("4"), false, false, 12, i, GOrgueCoupler::COUPLER_NORMAL);
+		manual->AddCoupler(coupler);
+		control = new GOGUIDrawstop(panel, coupler, 4, 100 + i);
+		control->Load(cfg, wxString::Format(wxT("SetterManual%03dCoupler%03dT4"), manual_nr, i));
+		panel->AddControl(control);
+
+		coupler = new GOrgueCoupler(m_organfile, manual_nr);
+		coupler->Load(cfg, wxString::Format(wxT("SetterManual%03dCoupler%03dBAS"), manual_nr, i), _("BAS"), false, false, 0, i, GOrgueCoupler::COUPLER_BASS);
+		manual->AddCoupler(coupler);
+		control = new GOGUIDrawstop(panel, coupler, 5, 100 + i);
+		control->Load(cfg, wxString::Format(wxT("SetterManual%03dCoupler%03dBAS"), manual_nr, i));
+		panel->AddControl(control);
+
+		coupler = new GOrgueCoupler(m_organfile, manual_nr);
+		coupler->Load(cfg, wxString::Format(wxT("SetterManual%03dCoupler%03dMEL"), manual_nr, i), _("MEL"), false, false, 0, i, GOrgueCoupler::COUPLER_MELODY);
+		manual->AddCoupler(coupler);
+		control = new GOGUIDrawstop(panel, coupler, 6, 100 + i);
+		control->Load(cfg, wxString::Format(wxT("SetterManual%03dCoupler%03dMEL"), manual_nr, i));
+		panel->AddControl(control);
+	}
+
+	return panel;
+}
+
+
+GOGUIPanel* GOrgueSetter::CreateDivisionalPanel(IniFileConfig& cfg)
+{
+	GOGUIControl* control;
+	GOGUISetterButton* button;
+
+	GOGUIPanel* panel = new GOGUIPanel(m_organfile);
+	GOGUIDisplayMetrics* metrics = new GOGUISetterDisplayMetrics(cfg, m_organfile, wxT("SetterDivisionals"), GOGUI_SETTER_DIVISIONALS);
+	panel->Init(cfg, metrics, _("Divisionals"), wxT("SetterDivisionalPanel"));
+
+	control = new GOGUIHW1Background(panel);
+	panel->AddControl(control);
+
+	button = new GOGUISetterButton(panel, m_button[ID_SETTER_SET]);
+	button->Init(cfg, 1, 100, wxT("SetterGeneralsSet"));
+	panel->AddControl(button);
+
+	button = new GOGUISetterButton(panel, m_button[ID_SETTER_REGULAR]);
+	button->Init(cfg, 3, 100, wxT("SetterGerneralsRegular"));
+	panel->AddControl(button);
+
+	button = new GOGUISetterButton(panel, m_button[ID_SETTER_SCOPE]);
+	button->Init(cfg, 4, 100, wxT("SetterGeneralsScope"));
+	panel->AddControl(button);
+
+	button = new GOGUISetterButton(panel, m_button[ID_SETTER_SCOPED]);
+	button->Init(cfg, 5, 100, wxT("SetterGeneralsScoped"));
+	panel->AddControl(button);
+
+	button = new GOGUISetterButton(panel, m_button[ID_SETTER_FULL]);
+	button->Init(cfg, 7, 100, wxT("SetterGeneralsFull"));
+	panel->AddControl(button);
+
+	for (unsigned int i = m_organfile->GetFirstManualIndex(); i <= m_organfile->GetManualAndPedalCount(); i++)
+	{
+		int x, y;
+		GOrgueManual* manual = m_organfile->GetManual(i);
+
+		metrics->GetPushbuttonBlitPosition(100 + i, 1, &x, &y);
+
+		GOGUILabel* PosDisplay=new GOGUILabel(panel, NULL, x, y, manual->GetName());
+		PosDisplay->Load(cfg, wxString::Format(wxT("SetterDivisionalLabel%03d"), i));
+		panel->AddControl(PosDisplay);
+
+		for(unsigned j = 0; j < 10; j++)
+		{
+			GOrgueDivisional* divisional = new GOrgueDivisional(m_organfile);
+			divisional->Load(cfg, wxString::Format(wxT("Setter%03dDivisional%03d"), i, j + 100), i, 100 + j, wxString::Format(wxT("%d"), j + 1));
+			manual->AddDivisional(divisional);
+
+			control = new GOGUIPushbutton(panel, divisional, j + 3, 100 + i);
+			control->Load(cfg, wxString::Format(wxT("Setter%03dDivisional%03d"), i, j + 100));
+			panel->AddControl(control);
+		}
+	}
+
+	return panel;
 }
 
 GOGUIPanel* GOrgueSetter::CreateGeneralsPanel(IniFileConfig& cfg)
@@ -326,8 +453,8 @@ GOGUIPanel* GOrgueSetter::CreateSetterPanel(IniFileConfig& cfg)
 	control = new GOGUIHW1Background(panel);
 	panel->AddControl(control);
 
-	GOGUILabel* PosDisplay=new GOGUILabel(panel, &m_PosDisplay);
-	PosDisplay->Init(cfg, 350, 10, wxT("SetterCurrentPosition"));
+	GOGUILabel* PosDisplay=new GOGUILabel(panel, &m_PosDisplay, 350, 10);
+	PosDisplay->Load(cfg, wxT("SetterCurrentPosition"));
 	panel->AddControl(PosDisplay);
 
 	button = new GOGUISetterButton(panel, m_button[ID_SETTER_CURRENT]);
@@ -428,8 +555,8 @@ GOGUIPanel* GOrgueSetter::CreateCrescendoPanel(IniFileConfig& cfg)
 	enclosure->Load(cfg, wxT("SetterSwell"));
 	panel->AddControl(enclosure);
 
-	GOGUILabel* PosDisplay=new GOGUILabel(panel, &m_CrescendoDisplay);
-	PosDisplay->Init(cfg, 350, 10, wxT("SetterCrescendoPosition"));
+	GOGUILabel* PosDisplay=new GOGUILabel(panel, &m_CrescendoDisplay, 350, 10);
+	PosDisplay->Load(cfg, wxT("SetterCrescendoPosition"));
 	panel->AddControl(PosDisplay);
 
 	button = new GOGUISetterButton(panel, m_button[ID_SETTER_SET]);
