@@ -53,25 +53,11 @@ public:
 	virtual bool LoadCache(wxInputStream* cache);
 	virtual bool SaveCache(wxOutputStream* cache);
 
-	const AUDIO_SECTION* GetLoop() const;
-	const AUDIO_SECTION* GetRelease() const;
 	const AUDIO_SECTION* GetAttack() const;
 	float GetGain() const;
 	int IsOneshot() const;
 
 };
-
-inline
-const AUDIO_SECTION* GOSoundProvider::GetLoop() const
-{
-	return &m_Loop;
-}
-
-inline
-const AUDIO_SECTION* GOSoundProvider::GetRelease() const
-{
-	return &m_Release;
-}
 
 inline
 const AUDIO_SECTION* GOSoundProvider::GetAttack() const
