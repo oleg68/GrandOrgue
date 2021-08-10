@@ -31,6 +31,7 @@
 #include "mutex_locker.h"
 #include <wx/app.h>
 #include <wx/intl.h>
+#include <wx/log.h>
 #include <wx/window.h>
 
 GOrgueSound::GOrgueSound(GOrgueSettings& settings) :
@@ -153,15 +154,22 @@ bool GOrgueSound::OpenSound()
 			if (name == wxEmptyString)
 				name = GetDefaultAudioDevice(portsConfig);
 
+			wxLogMessage("GOrgueSound::OpenSound before GOrgueSoundPort::create: %s", name);
+
 			m_AudioOutputs[i].port = GOrgueSoundPort::create(portsConfig, this, name);
 			if (!m_AudioOutputs[i].port)
 				throw wxString::Format(_("Output device %s not found - no sound output will occure"), name.c_str());
 
+			wxLogMessage("GOrgueSound::OpenSound after create before init: %s", name);
+			
 			m_AudioOutputs[i].port->Init(audio_config[i].channels, GetEngine().GetSampleRate(), m_SamplesPerBuffer, audio_config[i].desired_latency, i);
+			wxLogMessage("GOrgueSound::OpenSound after init: %s", name);
 		}
 
 		OpenMidi();
+		wxLogMessage("GOrgueSound::OpenSound before StartStreams");
 		StartStreams();
+		wxLogMessage("GOrgueSound::OpenSound after StartStreams");
 		StartThreads();
 		opened_ok = true;
 
@@ -206,7 +214,9 @@ void GOrgueSound::StartStreams()
 
 void GOrgueSound::CloseSound()
 {
+	wxLogMessage("GOrgueSound::CloseSound before StopThreads");
 	StopThreads();
+	wxLogMessage("GOrgueSound::CloseSound after StopThreads");
 
 	for(unsigned i = 0; i < m_AudioOutputs.size(); i++)
 	{
@@ -215,11 +225,15 @@ void GOrgueSound::CloseSound()
 		m_AudioOutputs[i].condition.Broadcast();
 	}
 
+	wxLogMessage("GOrgueSound::CloseSound after broadcast");
+
 	for(unsigned i = 1; i < m_AudioOutputs.size(); i++)
 	{
 		GOMutexLocker dev_lock(m_AudioOutputs[i].mutex);
 		m_AudioOutputs[i].condition.Broadcast();
 	}
+
+	wxLogMessage("GOrgueSound::CloseSound after dev_lock broadcast");
 
 	for(int i = m_AudioOutputs.size() - 1; i >= 0; i--)
 	{
@@ -228,15 +242,23 @@ void GOrgueSound::CloseSound()
 		  GOrgueSoundPort* const port = m_AudioOutputs[i].port;
 		  
 		  m_AudioOutputs[i].port = NULL;
+		  
+		  wxLogMessage("GOrgueSound::CloseSound before close port: %d", i);
 		  port->Close();
+		  wxLogMessage("GOrgueSound::CloseSound after close before delete port: %d", i);
 		  delete port;
+		  wxLogMessage("GOrgueSound::CloseSound after delete port: %d", i);
 		}
 	}
 
 	if (m_organfile)
 		m_organfile->Abort();
+
+	wxLogMessage("GOrgueSound::CloseSound before ResetMeters");
+
 	ResetMeters();
 	m_AudioOutputs.clear();
+	wxLogMessage("GOrgueSound::CloseSound after clear");
 }
 
 bool GOrgueSound::ResetSound(bool force)
@@ -244,9 +266,11 @@ bool GOrgueSound::ResetSound(bool force)
 	wxBusyCursor busy;
 	if (!m_AudioOutputs.size() && !force)
 		return false;
-
+	wxLogMessage("GOrgueSound::ResetSound before CloseSound");
 	CloseSound();
+	wxLogMessage("GOrgueSound::ResetSound after CloseSound before OpenSound");
 	if (!OpenSound())
+	wxLogMessage("GOrgueSound::ResetSound after OpenSound");
 		return false;
 
 	return true;
