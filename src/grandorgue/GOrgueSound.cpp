@@ -29,9 +29,11 @@
 #include "GOrgueSoundPort.h"
 #include "GrandOrgueFile.h"
 #include "mutex_locker.h"
+
+
+#include <iostream>
 #include <wx/app.h>
 #include <wx/intl.h>
-#include <wx/log.h>
 #include <wx/window.h>
 
 GOrgueSound::GOrgueSound(GOrgueSettings& settings) :
@@ -154,22 +156,22 @@ bool GOrgueSound::OpenSound()
 			if (name == wxEmptyString)
 				name = GetDefaultAudioDevice(portsConfig);
 
-			wxLogMessage("GOrgueSound::OpenSound before GOrgueSoundPort::create: %s", name);
+			std::cout << "GOrgueSound::OpenSound before GOrgueSoundPort::create: " << name << std::endl;
 
 			m_AudioOutputs[i].port = GOrgueSoundPort::create(portsConfig, this, name);
 			if (!m_AudioOutputs[i].port)
 				throw wxString::Format(_("Output device %s not found - no sound output will occure"), name.c_str());
 
-			wxLogMessage("GOrgueSound::OpenSound after create before init: %s", name);
+			std::cout << "GOrgueSound::OpenSound after create before init: " << name << std::endl;
 			
 			m_AudioOutputs[i].port->Init(audio_config[i].channels, GetEngine().GetSampleRate(), m_SamplesPerBuffer, audio_config[i].desired_latency, i);
-			wxLogMessage("GOrgueSound::OpenSound after init: %s", name);
+			std::cout << "GOrgueSound::OpenSound after init: " << name << std::endl;
 		}
 
 		OpenMidi();
-		wxLogMessage("GOrgueSound::OpenSound before StartStreams");
+		std::cout << "GOrgueSound::OpenSound before StartStreams" << std::endl;
 		StartStreams();
-		wxLogMessage("GOrgueSound::OpenSound after StartStreams");
+		std::cout << "GOrgueSound::OpenSound after StartStreams" << std::endl;
 		StartThreads();
 		opened_ok = true;
 
@@ -214,9 +216,9 @@ void GOrgueSound::StartStreams()
 
 void GOrgueSound::CloseSound()
 {
-	wxLogMessage("GOrgueSound::CloseSound before StopThreads");
+	std::cout << "GOrgueSound::CloseSound before StopThreads" << std::endl;
 	StopThreads();
-	wxLogMessage("GOrgueSound::CloseSound after StopThreads");
+	std::cout << "GOrgueSound::CloseSound after StopThreads" << std::endl;
 
 	for(unsigned i = 0; i < m_AudioOutputs.size(); i++)
 	{
@@ -225,7 +227,7 @@ void GOrgueSound::CloseSound()
 		m_AudioOutputs[i].condition.Broadcast();
 	}
 
-	wxLogMessage("GOrgueSound::CloseSound after broadcast");
+	std::cout << "GOrgueSound::CloseSound after broadcast" << std::endl;
 
 	for(unsigned i = 1; i < m_AudioOutputs.size(); i++)
 	{
@@ -233,7 +235,7 @@ void GOrgueSound::CloseSound()
 		m_AudioOutputs[i].condition.Broadcast();
 	}
 
-	wxLogMessage("GOrgueSound::CloseSound after dev_lock broadcast");
+	std::cout << "GOrgueSound::CloseSound after dev_lock broadcast" << std::endl;
 
 	for(int i = m_AudioOutputs.size() - 1; i >= 0; i--)
 	{
@@ -243,37 +245,52 @@ void GOrgueSound::CloseSound()
 		  
 		  m_AudioOutputs[i].port = NULL;
 		  
-		  wxLogMessage("GOrgueSound::CloseSound before close port: %d", i);
+		  std::cout << "GOrgueSound::CloseSound before close port: " << i << std::endl;
 		  port->Close();
-		  wxLogMessage("GOrgueSound::CloseSound after close before delete port: %d", i);
+		  std::cout << "GOrgueSound::CloseSound after close before delete port: " << i << std::endl;
 		  delete port;
-		  wxLogMessage("GOrgueSound::CloseSound after delete port: %d", i);
+		  std::cout << "GOrgueSound::CloseSound after delete port: " << i << std::endl;
 		}
 	}
 
 	if (m_organfile)
 		m_organfile->Abort();
 
-	wxLogMessage("GOrgueSound::CloseSound before ResetMeters");
+	std::cout << "GOrgueSound::CloseSound before ResetMeters" << std::endl;
 
 	ResetMeters();
 	m_AudioOutputs.clear();
-	wxLogMessage("GOrgueSound::CloseSound after clear");
+	std::cout << "GOrgueSound::CloseSound after clear" << std::endl;
+}
+
+
+// Get current date/time, format is YYYY-MM-DD.HH:mm:ss
+const std::string current_date_time() {
+    time_t     now = time(0);
+    struct tm  tstruct;
+    char       buf[80];
+    tstruct = *localtime(&now);
+    // Visit http://en.cppreference.com/w/cpp/chrono/c/strftime
+    // for more information about date/time format
+    strftime(buf, sizeof(buf), "%Y-%m-%d.%X", &tstruct);
+
+    return buf;
 }
 
 bool GOrgueSound::ResetSound(bool force)
 {
+
 	wxBusyCursor busy;
 	if (!m_AudioOutputs.size() && !force)
 		return false;
-	wxLogMessage("GOrgueSound::ResetSound before CloseSound");
+	std::cout << current_date_time() << "GOrgueSound::ResetSound" << std::endl;
+	std::cout << "GOrgueSound::ResetSound before CloseSound" << std::endl;
 	CloseSound();
-	wxLogMessage("GOrgueSound::ResetSound after CloseSound before OpenSound");
-	if (!OpenSound())
-	wxLogMessage("GOrgueSound::ResetSound after OpenSound");
-		return false;
-
-	return true;
+	std::cout << "GOrgueSound::ResetSound after CloseSound before OpenSound" << std::endl;
+	
+	const bool res = OpenSound();
+	std::cout << "GOrgueSound::ResetSound after OpenSound res=" << res << std::endl;
+	return res;
 }
 
 void GOrgueSound::AssignOrganFile(GrandOrgueFile* organfile)
