@@ -74,11 +74,19 @@ void GOrgueSound::StartThreads()
 
 void GOrgueSound::StopThreads()
 {
+	std::cout << "GOrgueSound::StopThreads" << std::endl;
 	for(unsigned i = 0; i < m_Threads.size(); i++)
-		m_Threads[i]->Delete();
+	{
+	  std::cout << "  GOrgueSound::StopThreads before delete " << i << std::endl;
+	  m_Threads[i]->Delete();
+	  std::cout << "  GOrgueSound::StopThreads after delete " << i << std::endl;
+	}
 
+	std::cout << "  GOrgueSound::StopThreads before thread_locker" << std::endl;
 	GOMutexLocker thread_locker(m_thread_lock);
+	std::cout << "  GOrgueSound::StopThreads before m_Threads.resize" << std::endl;
 	m_Threads.resize(0);
+	std::cout << "GOrgueSound::StopThreads finished" << std::endl;
 }
 
 void GOrgueSound::OpenMidi()
