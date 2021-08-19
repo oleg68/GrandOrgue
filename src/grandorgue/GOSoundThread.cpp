@@ -23,6 +23,7 @@
 
 #include "GOSoundScheduler.h"
 #include "GOSoundWorkItem.h"
+#include <iostream>
 #include "mutex_locker.h"
 #include <wx/log.h>
 
@@ -68,10 +69,16 @@ void GOSoundThread::Wakeup()
 
 void GOSoundThread::Delete()
 {
+	std::cout << "GOSoundThread::Delete" << std::endl;
 	{
+		std::cout << "  GOSoundThread::Delete before lock" << std::endl;
 		GOMutexLocker lock(m_Mutex);
+		std::cout << "  GOSoundThread::Delete after lock" << std::endl;
 		m_Stop = true;
 		m_Condition.Signal();
+		std::cout << "  GOSoundThread::Delete after signal" << std::endl;
 	}
+	std::cout << "  GOSoundThread::Delete before Stop()" << std::endl;
 	Stop();
+	std::cout << "GOSoundThread::Delete finished" << std::endl;
 }
