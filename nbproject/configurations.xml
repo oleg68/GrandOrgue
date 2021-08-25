@@ -6222,57 +6222,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -7301,58 +7269,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
             <pElem>src/grandorgue/contrib</pElem>
-            <pElem>src/grandorgue</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -7652,58 +7587,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unichar.h</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -7769,57 +7671,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -7886,57 +7756,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>src/grandorgue</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -8087,57 +7925,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -8261,58 +8067,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
             <pElem>submodules/RtMidi</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -8460,57 +8233,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -8518,58 +8259,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>src/core/contrib</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -8689,57 +8397,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -8805,57 +8481,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -8863,57 +8507,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -8921,57 +8533,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
             <pElem>submodules/RtMidi</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -9153,57 +8733,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -9211,57 +8759,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -9269,58 +8785,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
             <pElem>submodules/RtMidi</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -9698,57 +9181,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -10042,57 +9493,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -10184,57 +9603,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -10298,57 +9685,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>src/grandorgue</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -10669,58 +10024,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>src/core/contrib</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -10960,59 +10282,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>src/core</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>submodules/RtMidi</pElem>
             <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
+            <pElem>src/core</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -11020,59 +10308,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>src/core/contrib</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
             <pElem>submodules/RtMidi</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -11080,59 +10334,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>/usr/include/c++/11</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/include/wx-3.0/wx/html</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
             <pElem>submodules/RtMidi</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -11285,57 +10505,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -11343,169 +10531,156 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>src/grandorgue</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
+          <preprocessorList>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
+            <Elem>_FILE_OFFSET_BITS=64</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="/home/oleg/my-projects/grandorgue/GrandOrgue/src/grandorgue/OrganDialog.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
+          <preprocessorList>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
+            <Elem>_FILE_OFFSET_BITS=64</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="/home/oleg/my-projects/grandorgue/GrandOrgue/src/grandorgue/SettingsArchives.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>src/grandorgue</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
+          <preprocessorList>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
+            <Elem>_FILE_OFFSET_BITS=64</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="/home/oleg/my-projects/grandorgue/GrandOrgue/src/grandorgue/SettingsAudioGroup.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
+          <preprocessorList>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
+            <Elem>_FILE_OFFSET_BITS=64</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="/home/oleg/my-projects/grandorgue/GrandOrgue/src/grandorgue/SettingsAudioOutput.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
             <pElem>submodules/RtMidi</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
+          <preprocessorList>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
+            <Elem>_FILE_OFFSET_BITS=64</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="/home/oleg/my-projects/grandorgue/GrandOrgue/src/grandorgue/SettingsDefaults.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>src/grandorgue</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
+          <preprocessorList>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
+            <Elem>_FILE_OFFSET_BITS=64</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="/home/oleg/my-projects/grandorgue/GrandOrgue/src/grandorgue/SettingsDialog.cpp"
@@ -11571,58 +10746,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
             <pElem>submodules/RtMidi</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -11630,57 +10772,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>src/grandorgue</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -11688,57 +10798,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>src/grandorgue</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -11746,57 +10824,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>src/grandorgue</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -11804,57 +10850,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>src/grandorgue</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>
@@ -11862,57 +10876,25 @@
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="5">
           <incDir>
-            <pElem>/usr/include/c++/11/bits</pElem>
-            <pElem>/usr/include/c++/11</pElem>
-            <pElem>/usr/include/wx-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/gtk</pElem>
-            <pElem>/usr/include/wx-3.0/wx/generic</pElem>
-            <pElem>src/grandorgue</pElem>
+            <pElem>build-for/current/src/core/GrandOrgueDef.h</pElem>
+            <pElem>src/grandorgue/contrib</pElem>
+            <pElem>src/grandorgue/resource</pElem>
             <pElem>src/core</pElem>
-            <pElem>/usr/include/c++/11/ext</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux/bits</pElem>
-            <pElem>/usr/include/c++/11/debug</pElem>
-            <pElem>/usr/lib/gcc/x86_64-redhat-linux/11/include</pElem>
-            <pElem>/usr/include/wx-3.0/wx/meta</pElem>
-            <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0/wx</pElem>
-            <pElem>/usr/include/wx-3.0/wx/unix</pElem>
-            <pElem>/usr/include/c++/11/backward</pElem>
-            <pElem>/usr/include/wx-3.0</pElem>
-            <pElem>/usr/include/c++/11/x86_64-redhat-linux</pElem>
+            <pElem>submodules/RtMidi</pElem>
+            <pElem>submodules/RtAudio</pElem>
+            <pElem>src/portaudio/include</pElem>
             <pElem>/usr/lib64/wx/include/gtk3-unicode-3.0</pElem>
+            <pElem>/usr/include/wx-3.0</pElem>
             <pElem>build-for/current/src/grandorgue</pElem>
           </incDir>
           <preprocessorList>
-            <Elem>GO_USE_JACK=1</Elem>
-            <Elem>WXUSINGDLL=1</Elem>
+            <Elem>GO_USE_JACK</Elem>
+            <Elem>WXUSINGDLL</Elem>
             <Elem>_FILE_OFFSET_BITS=64</Elem>
-            <Elem>_REENTRANT=1</Elem>
-            <Elem>__DBL_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT128_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT32_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64X_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT64_IS_IEC_60559__=2</Elem>
-            <Elem>__FLT_IS_IEC_60559__=2</Elem>
-            <Elem>__GNUC_EXECUTION_CHARSET_NAME="UTF-8"</Elem>
-            <Elem>__GNUC_MINOR__=1</Elem>
-            <Elem>__GNUC_RH_RELEASE__=1</Elem>
-            <Elem>__GNUC_WIDE_EXECUTION_CHARSET_NAME="UTF-32LE"</Elem>
-            <Elem>__GNUC__=11</Elem>
-            <Elem>__GNUG__=11</Elem>
-            <Elem>__GXX_ABI_VERSION=1016</Elem>
-            <Elem>__LDBL_IS_IEC_60559__=2</Elem>
-            <Elem>__REGISTER_PREFIX__=</Elem>
-            <Elem>__SSE3__=1</Elem>
-            <Elem>__STDCPP_THREADS__=1</Elem>
-            <Elem>__STRICT_ANSI__=1</Elem>
-            <Elem>__USER_LABEL_PREFIX__=</Elem>
-            <Elem>__VERSION__="11.1.1 20210428 (Red Hat 11.1.1-1)"</Elem>
-            <Elem>__WXGTK__=1</Elem>
-            <Elem>__cplusplus=201103L</Elem>
-            <Elem>__cpp_constexpr=200704L</Elem>
+            <Elem>_REENTRANT</Elem>
+            <Elem>__WXGTK__</Elem>
           </preprocessorList>
         </ccTool>
       </item>

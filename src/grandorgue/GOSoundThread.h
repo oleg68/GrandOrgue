@@ -35,6 +35,8 @@ private:
 
 	GOMutex m_Mutex;
 	GOCondition m_Condition;
+	
+	unsigned m_CurrentGroup;
 
 	void Entry();
 

@@ -45,9 +45,15 @@ void GOSoundThread::Entry()
 		{
 			next = m_Scheduler->GetNextGroup();
 			if (next != NULL)
-				next->Run();
+			{
+			  m_CurrentGroup = next->GetGroup();
+			  if (ShouldStop())
+			    std::cout << "GOSoundThread::Entry: running group=" << m_CurrentGroup << std::endl;
+			  next->Run();
+			}
 		}
 		while (next != NULL);
+		m_CurrentGroup = 0;
 
 		GOMutexLocker lock(m_Mutex);
 		if (ShouldStop() || m_Stop)
@@ -78,7 +84,7 @@ void GOSoundThread::Delete()
 		m_Condition.Signal();
 		std::cout << "  GOSoundThread::Delete after signal" << std::endl;
 	}
-	std::cout << "  GOSoundThread::Delete before Stop()" << std::endl;
+	std::cout << "  GOSoundThread::Delete before Stop(); lastWorkingGroup=" << load_once(m_CurrentGroup) << std::endl;
 	Stop();
 	std::cout << "GOSoundThread::Delete finished" << std::endl;
 }
