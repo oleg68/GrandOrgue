@@ -221,7 +221,7 @@ bool GOSoundRecorder::GetRepeat()
 	return false;
 }
 
-void GOSoundRecorder::Run()
+void GOSoundRecorder::Run(GOSoundThread *thread)
 {
 	if (!m_Recording)
 		return;

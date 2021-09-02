@@ -49,7 +49,7 @@ void GOSoundThread::Entry()
 			  m_CurrentGroup = next->GetGroup();
 			  if (ShouldStop())
 			    std::cout << "GOSoundThread::Entry: running group=" << m_CurrentGroup << std::endl;
-			  next->Run();
+			  next->Run(this);
 			}
 		}
 		while (next != NULL);

@@ -27,7 +27,7 @@
 
 class GOSoundScheduler;
 
-class GOSoundThread : private GOrgueThread
+class GOSoundThread : public GOrgueThread
 {
 private:
 	GOSoundScheduler* m_Scheduler;

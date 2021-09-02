@@ -63,7 +63,7 @@ bool GOSoundTremulantWorkItem::GetRepeat()
 	return false;
 }
 
-void GOSoundTremulantWorkItem::Run()
+void GOSoundTremulantWorkItem::Run(GOSoundThread *thread)
 {
 	if (m_Done)
 		return;
