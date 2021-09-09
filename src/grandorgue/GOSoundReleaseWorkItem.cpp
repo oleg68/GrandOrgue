@@ -71,29 +71,24 @@ void GOSoundReleaseWorkItem::Run(GOSoundThread *pThread)
 	GO_SAMPLER* sampler;
 	do
 	{
-		if (pThread && pThread->ShouldStop())
-		  std::cout << "GOSoundReleaseWorkItem::Run.10" << std::endl;
+		CheckPoint(pThread, "GOSoundReleaseWorkItem::Run.10");
 		while((sampler = m_List.Get()))
 		{
-			if (pThread && pThread->ShouldStop())
-			  std::cout << "GOSoundReleaseWorkItem::Run.15" << std::endl;
+			CheckPoint(pThread, "GOSoundReleaseWorkItem::Run.15");
 			m_Cnt.fetch_add(1);
 			m_engine.ProcessRelease(sampler);
 			if (m_Stop && m_Cnt > 10)
 				break;
 		}
-		if (pThread && pThread->ShouldStop())
-		  std::cout << "GOSoundReleaseWorkItem::Run.20" << std::endl;
+		CheckPoint(pThread, "GOSoundReleaseWorkItem::Run.20");
 		unsigned wait = m_WaitCnt;
 		if (wait < m_AudioGroups.size())
 		{
-			if (pThread && pThread->ShouldStop())
-			  std::cout << "GOSoundReleaseWorkItem::Run.25" << std::endl;
+			CheckPoint(pThread, "GOSoundReleaseWorkItem::Run.25");
 			m_AudioGroups[wait]->Finish(false);
 			m_WaitCnt.compare_exchange(wait, wait + 1);
 		}
-		if (pThread && pThread->ShouldStop())
-		  std::cout << "GOSoundReleaseWorkItem::Run.30" << std::endl;
+		CheckPoint(pThread, "GOSoundReleaseWorkItem::Run.30");
 	}
 	while(!m_Stop && m_WaitCnt < m_AudioGroups.size());
 }

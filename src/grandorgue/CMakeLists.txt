@@ -80,6 +80,7 @@ GOSoundScheduler.cpp
 GOSoundThread.cpp
 GOSoundTremulantWorkItem.cpp
 GOSoundWindchestWorkItem.cpp
+GOSoundWorkItem.cpp
 GOrgueAudioRecorder.cpp
 GOrgueCache.cpp
 GOrgueCacheCleaner.cpp

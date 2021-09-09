@@ -99,10 +99,11 @@ bool GOSoundGroupWorkItem::GetRepeat()
 	return true;
 }
 
-void GOSoundGroupWorkItem::Run(GOSoundThread *thread)
+void GOSoundGroupWorkItem::Run(GOSoundThread *pThread)
 {
 	if (m_Done == 3)
 		return;
+	CheckPoint(pThread, "GOSoundGroupWorkItem::Run.10");
 	{
 		GOMutexLocker locker(m_Mutex);
 		if (m_Done == 0)
@@ -118,10 +119,14 @@ void GOSoundGroupWorkItem::Run(GOSoundThread *thread)
 		}
 		m_ActiveCount++;
 	}
+	CheckPoint(pThread, "GOSoundGroupWorkItem::Run.20");
 	float buffer[m_SamplesPerBuffer * 2];
 	memset(buffer, 0, m_SamplesPerBuffer * 2 * sizeof(float));
+	CheckPoint(pThread, "GOSoundGroupWorkItem::Run.30");
 	ProcessList(m_Active, buffer);
+	CheckPoint(pThread, "GOSoundGroupWorkItem::Run.40");
 	ProcessReleaseList(m_Release, buffer);
+	CheckPoint(pThread, "GOSoundGroupWorkItem::Run.50");
 	{
 		GOMutexLocker locker(m_Mutex);
 		if (m_Done == 1)
@@ -141,6 +146,7 @@ void GOSoundGroupWorkItem::Run(GOSoundThread *thread)
 			m_Condition.Broadcast();
 		}
 	}
+	CheckPoint(pThread, "GOSoundGroupWorkItem::Run.60");
 }
 
 void GOSoundGroupWorkItem::Exec()

@@ -47,6 +47,7 @@ void GOSoundThread::Entry()
 			if (next != NULL)
 			{
 			  m_CurrentGroup = next->GetGroup();
+			  m_LastCheckpoint = NULL;
 			  if (ShouldStop())
 			    std::cout << "GOSoundThread::Entry: running group=" << m_CurrentGroup << std::endl;
 			  next->Run(this);
@@ -84,7 +85,11 @@ void GOSoundThread::Delete()
 		m_Condition.Signal();
 		std::cout << "  GOSoundThread::Delete after signal" << std::endl;
 	}
-	std::cout << "  GOSoundThread::Delete before Stop(); lastWorkingGroup=" << load_once(m_CurrentGroup) << std::endl;
+	std::cout
+	  << "  GOSoundThread::Delete before Stop(); lastWorkingGroup=" 
+	  << load_once(m_CurrentGroup) 
+	  << " " << (m_LastCheckpoint ? m_LastCheckpoint : "")
+	  << std::endl;
 	Stop();
 	std::cout << "GOSoundThread::Delete finished" << std::endl;
 }

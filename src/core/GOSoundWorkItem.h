@@ -39,7 +39,7 @@ public:
 
 	virtual void Clear() = 0;
 	virtual void Reset() = 0;
-
+	
 	enum {
 		TREMULANT = 10,
 		WINDCHEST = 20,
@@ -49,6 +49,9 @@ public:
 		RELEASE = 160,
 		TOUCH = 700,
 	};
+	
+protected:
+  void CheckPoint(GOSoundThread * thread, const char* ckpt);
 };
 
 #endif

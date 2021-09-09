@@ -37,6 +37,8 @@ private:
 	GOCondition m_Condition;
 	
 	unsigned m_CurrentGroup;
+	
+	const char* m_LastCheckpoint;
 
 	void Entry();
 
@@ -46,6 +48,8 @@ public:
 	void Run();
 	void Delete();
 	void Wakeup();
+
+	void SetLastCheckpoint(const char* ckpt) { m_LastCheckpoint = ckpt; }
 };
 
 #endif
