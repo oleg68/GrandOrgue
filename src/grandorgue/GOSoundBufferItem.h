@@ -22,6 +22,8 @@
 #ifndef GOSOUNDBUFFERITEM_H
 #define GOSOUNDBUFFERITEM_H
 
+class GOSoundThread;
+
 class GOSoundBufferItem
 {
 protected:
@@ -40,7 +42,7 @@ public:
 		delete[] m_Buffer;
 	}
 
-	virtual void Finish(bool stop) = 0;
+	virtual void Finish(bool stop, GOSoundThread *pThread = nullptr) = 0;
 
 	float* m_Buffer;
 

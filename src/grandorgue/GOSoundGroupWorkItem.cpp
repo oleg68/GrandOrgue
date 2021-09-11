@@ -155,17 +155,22 @@ void GOSoundGroupWorkItem::Exec()
 	Run();
 }
 
-void GOSoundGroupWorkItem::Finish(bool stop)
+void GOSoundGroupWorkItem::Finish(bool stop, GOSoundThread *pThread)
 {
 	if (stop)
 		m_Stop = true;
-	Run();
+	CheckPoint(pThread, "GOSoundGroupWorkItem::Finish.10");
+	Run(pThread);
+	CheckPoint(pThread, "GOSoundGroupWorkItem::Finish.20");
 	if (m_Done == 3)
 		return;
 
 	{
+		CheckPoint(pThread, "GOSoundGroupWorkItem::Finish.30");
 		GOMutexLocker locker(m_Mutex);
+		CheckPoint(pThread, "GOSoundGroupWorkItem::Finish.40");
 		if (m_Done != 3)
 			m_Condition.Wait();
+		CheckPoint(pThread, "GOSoundGroupWorkItem::Finish.50");
 	}
 }
