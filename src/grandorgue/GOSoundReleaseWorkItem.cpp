@@ -85,7 +85,7 @@ void GOSoundReleaseWorkItem::Run(GOSoundThread *pThread)
 		if (wait < m_AudioGroups.size())
 		{
 			CheckPoint(pThread, "GOSoundReleaseWorkItem::Run.25");
-			m_AudioGroups[wait]->Finish(false);
+			m_AudioGroups[wait]->Finish(false, pThread);
 			m_WaitCnt.compare_exchange(wait, wait + 1);
 		}
 		CheckPoint(pThread, "GOSoundReleaseWorkItem::Run.30");
