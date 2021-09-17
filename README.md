@@ -2,6 +2,8 @@
 [![Release](https://img.shields.io/github/v/release/GrandOrgue/grandorgue)](https://github.com/GrandOrgue/grandorgue/releases)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL%20v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
+**This repository is not more maintained. All future changes of GrandOrgue, discussions and issues will be made in [the new official repository](https://github.com/GrandOrgue/grandorgue)**
+
 # GrandOrgue
 
 GrandOrgue is a sample based pipe organ simulator.
